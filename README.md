@@ -7,6 +7,8 @@ Steps:
 2. Install xQuartz
 3. xhost +IP_ADDRESS
 4. Run the docker file 
+> [!IMPORTANT]
+> 
 
 # WindowsOS
 Steps:
