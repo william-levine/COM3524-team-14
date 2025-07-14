@@ -114,4 +114,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Author
 
-[Your Name] – for COM 3524, Department of Computer Science  
+Ayesha Sana – for COM3524, Department of Computer Science  
