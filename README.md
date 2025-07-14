@@ -18,9 +18,12 @@ Steps:
 4. Run the following commands 
 
 ```bash 
-    Docker build —no-cache -t com3524-toolkit```
+    Docker build —no-cache -t com3524-toolkit
+```
 
-```Docker run -it -p 5000:5000 -e DISPLAY=host.docker.internal:0 com3524-toolkit```
+```bash
+    Docker run -it -p 5000:5000 -e DISPLAY=host.docker.internal:0 com3524-toolkit
+```
 
 # LinuxOS
 1. Install linux cli using online website installation for docker - docs.docker.com/engine/install/ubuntu
