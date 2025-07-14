@@ -14,7 +14,7 @@ Steps:
 2. Run both applications on the back
 3. Run the vcxsrv with variable set to 0 instead of -1
 4. Run the following commands
-   a. '''Docker build —no-cache -t com3524-toolkit'''
+   a. ```Docker build —no-cache -t com3524-toolkit```
    b. Docker run -it -p 5000:5000 -e DISPLAY=host.docker.internal:0 com3524
 
 # LinuxOS
