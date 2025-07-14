@@ -1,12 +1,20 @@
 # COM 3524 – System Tools
 
+<<<<<<< HEAD
 This repository contains the source code and documentation for the system tools developed for the COM3524 course. 
+=======
+This repository contains the source code and documentation for the system tools developed for the COM 3524 course. These tools are designed for educational purposes to demonstrate key system-level concepts.
+>>>>>>> 60cdb4571d8b158f2bb370d109c3156c7c2167b8
 
 ## Features
 
 - Cross-platform support (Linux, macOS, Windows)
 - Command-line utilities for system inspection and control
+<<<<<<< HEAD
 
+=======
+- Modular, extensible design for course assignments
+>>>>>>> 60cdb4571d8b158f2bb370d109c3156c7c2167b8
 
 ---
 
@@ -15,6 +23,7 @@ This repository contains the source code and documentation for the system tools 
 - [Python 3.8+](https://www.python.org/downloads/)
 - `pip` (Python package manager)
 - Git (to clone this repository)
+<<<<<<< HEAD
 ## 🔧 Prerequisites (All Platforms)
 
 Before starting, ensure the following software is installed on your machine:
@@ -33,6 +42,8 @@ Download and install Docker Desktop:
 ---
 
 
+=======
+>>>>>>> 60cdb4571d8b158f2bb370d109c3156c7c2167b8
 
 ---
 
@@ -57,6 +68,7 @@ pip install -r requirements.txt
 
 ## Platform-Specific Notes
 
+<<<<<<< HEAD
 
 ---
 
@@ -82,10 +94,50 @@ docker build --no-cache -t com3524-toolkit .
 ### 4. **Run Docker Container**
 ```bash
 docker run -it -p 5000:5000 -e DISPLAY=host.docker.internal:0 com3524-toolkit
+=======
+### 🔹 Linux
+
+No additional configuration is typically required. Make sure you have Python and `pip` installed:
+
+```bash
+sudo apt update
+sudo apt install python3 python3-pip
+```
+
+Run the tools:
+
+```bash
+python3 main.py
+```
+
+### 🔸 macOS
+
+Ensure Python 3 is installed (macOS may come with Python 2.x by default):
+
+```bash
+brew install python
+```
+
+Run the tools:
+
+```bash
+python3 main.py
+```
+
+### 🪟 Windows
+
+Install Python from [python.org](https://www.python.org/downloads/windows/). During installation, make sure to check **“Add Python to PATH”**.
+
+Run the tools in PowerShell or CMD:
+
+```bash
+python main.py
+>>>>>>> 60cdb4571d8b158f2bb370d109c3156c7c2167b8
 ```
 
 ---
 
+<<<<<<< HEAD
 ## 🐧 Linux (Ubuntu) Instructions
 
 ### 1. **Install Docker**
@@ -180,9 +232,44 @@ docker build --no-cache -t com3524-toolkit .
 
 ---
 
+=======
+## Usage
+
+After installation, run the main program with:
+
+```bash
+python main.py
+```
+
+This will display a menu or command-line interface for interacting with the available system tools.
+
+---
+
+## Troubleshooting
+
+- Ensure you’re using **Python 3.8 or higher**.
+- For permission errors on Linux/macOS, try using `sudo` if needed.
+- On Windows, run the command prompt or PowerShell as Administrator if access is denied.
+
+---
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+>>>>>>> 60cdb4571d8b158f2bb370d109c3156c7c2167b8
 
 ---
 
 ## Author
 
+<<<<<<< HEAD
 Ayesha Sana– for COM3524, Department of Computer Science  
+=======
+Ayesha Sana – for COM3524, Department of Computer Science  
+>>>>>>> 60cdb4571d8b158f2bb370d109c3156c7c2167b8
