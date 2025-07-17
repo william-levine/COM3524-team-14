@@ -117,7 +117,6 @@ Run the tools in PowerShell or CMD:
 
 ```bash
 python main.py
->>>>>>> 60cdb4571d8b158f2bb370d109c3156c7c2167b8
 ```
 
 ---
@@ -246,7 +245,6 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
->>>>>>> 60cdb4571d8b158f2bb370d109c3156c7c2167b8
 
 ---
 
@@ -254,4 +252,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 Ayesha Sana– for COM3524, Department of Computer Science  
 =======
 Ayesha Sana – for COM3524, Department of Computer Science  
->>>>>>> 60cdb4571d8b158f2bb370d109c3156c7c2167b8
