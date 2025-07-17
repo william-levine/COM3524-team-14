@@ -2,8 +2,6 @@
 
 This repository contains the source code and documentation for the system tools developed for the COM3524 course. 
 
-This repository contains the source code and documentation for the system tools developed for the COM 3524 course. These tools are designed for educational purposes to demonstrate key system-level concepts.
-
 ## Features
 
 - Cross-platform support (Linux, macOS, Windows)
