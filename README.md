@@ -73,7 +73,7 @@ docker run -it -p 5000:5000 -e DISPLAY=host.docker.internal:0 com3524-toolkit
 ```
 ### 🔹 Linux
 
->[! NOTE]
+>[!NOTE]
 >No additional configuration is typically required. Make sure you have Python and `pip` installed:
 
 
