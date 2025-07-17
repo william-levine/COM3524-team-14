@@ -79,10 +79,12 @@ docker build --no-cache -t com3524-toolkit .
 ### 4. **Run Docker Container**
 ```bash
 docker run -it -p 5000:5000 -e DISPLAY=host.docker.internal:0 com3524-toolkit
-=======
+```
 ### 🔹 Linux
 
+[! NOTE]
 No additional configuration is typically required. Make sure you have Python and `pip` installed:
+
 
 ```bash
 sudo apt update
