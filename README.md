@@ -46,11 +46,10 @@ cd COM3524
 ## Platform-Specific Notes
 ---
 
-
 ## 🪟 Windows Instructions
 
 ### 1. **Install Required Software**
-- Install Docker Desktop
+- Install Docker Desktop and VcXsrv as mentioned [above](##Prerequisites)
 - Install [VcXsrv](https://sourceforge.net/projects/vcxsrv/)
 
 ### 2. **Run VcXsrv**
