@@ -7,10 +7,6 @@ This repository contains the source code and documentation for the system tools 
 ## Features
 
 - Cross-platform support (Linux, macOS, Windows)
-- Command-line utilities for system inspection and control
-<<<<<<< HEAD
-
-=======
 - Modular, extensible design for course assignments
 
 ---
@@ -37,10 +33,6 @@ Download and install Docker Desktop:
 
 ---
 
-
-=======
->>>>>>> 60cdb4571d8b158f2bb370d109c3156c7c2167b8
-
 ---
 
 ## Installation
@@ -48,8 +40,8 @@ Download and install Docker Desktop:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/com3524-system-tools.git
-cd com3524-system-tools
+git clone https://github.com/ac1asana/COM3524.git
+cd COM3524
 ```
 
 ### 2. Install Dependencies
@@ -63,9 +55,6 @@ pip install -r requirements.txt
 ---
 
 ## Platform-Specific Notes
-
-<<<<<<< HEAD
-
 ---
 
 
@@ -133,7 +122,6 @@ python main.py
 
 ---
 
-<<<<<<< HEAD
 ## 🐧 Linux (Ubuntu) Instructions
 
 ### 1. **Install Docker**
@@ -263,8 +251,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 ## Author
-
-<<<<<<< HEAD
 Ayesha Sana– for COM3524, Department of Computer Science  
 =======
 Ayesha Sana – for COM3524, Department of Computer Science  
