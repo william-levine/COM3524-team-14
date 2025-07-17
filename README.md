@@ -8,19 +8,17 @@ This repository contains the source code and documentation for the system tools 
 - Modular, extensible design for course assignments
 
 ---
-
-## Prerequisites
+## 🔧 Prerequisites (All Platforms)
+Before starting, ensure the following softwares and tools are installed on your machine:
 
 - [Python 3.8+](https://www.python.org/downloads/)
-- `pip` (Python package manager)
+- `pip` (Python package manager for installing necessary dependencies)
 - Git (to clone this repository)
-## 🔧 Prerequisites (All Platforms)
 
-Before starting, ensure the following software is installed on your machine:
 
 ### ✅ Docker Desktop
 Download and install Docker Desktop:  
-👉 [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
+👉 [https://www.docker.com/products/docker-desktop/]
 
 ### ✅ X11 Server
 | Platform | Tool     | Link                                      |
@@ -50,7 +48,6 @@ cd COM3524
 
 ### 1. **Install Required Software**
 - Install Docker Desktop and VcXsrv as mentioned [above](#Prerequisites)
-- Install [VcXsrv](https://sourceforge.net/projects/vcxsrv/)
 
 ### 2. **Run VcXsrv**
 Launch VcXsrv with:
@@ -63,55 +60,17 @@ Launch VcXsrv with:
 ```bash
 docker build --no-cache -t com3524-toolkit .
 ```
-
+>[!NOTE]
 ### 4. **Run Docker Container**
 ```bash
 docker run -it -p 5000:5000 -e DISPLAY=host.docker.internal:0 com3524-toolkit
 ```
-### 🔹 Linux
+
+## 🐧 Linux (Ubuntu) Instructions
 
 >[!NOTE]
 >No additional configuration is typically required. Make sure you have Python and `pip` installed:
-
-
-```bash
-sudo apt update
-sudo apt install python3 python3-pip
-```
-
-Run the tools:
-
-```bash
-python3 main.py
-```
-
-### 🔸 macOS
-
-Ensure Python 3 is installed (macOS may come with Python 2.x by default):
-
-```bash
-brew install python
-```
-
-Run the tools:
-
-```bash
-python3 main.py
-```
-
-### 🪟 Windows
-
-Install Python from [python.org](https://www.python.org/downloads/windows/). During installation, make sure to check **“Add Python to PATH”**.
-
-Run the tools in PowerShell or CMD:
-
-```bash
-python main.py
-```
-
----
-
-## 🐧 Linux (Ubuntu) Instructions
+>run the command `python3 --version` or `pip --version` to check whether it is installed on your system
 
 ### 1. **Install Docker**
 
@@ -133,10 +92,15 @@ xhost +local:docker  # Allow Docker to access display (run once)
 
 docker run -it   -e DISPLAY=:0   -v /tmp/.X11-unix:/tmp/.X11-unix   com3524-toolkit
 ```
-
 ---
 
-## 🍎 macOS Instructions
+### 🍎  macOS
+
+Ensure Python 3 is installed (macOS may come with Python 2.x by default):
+
+```bash
+brew install python
+```
 
 ### 1. **Use the Zsh Shell**
 Check with:
@@ -176,11 +140,10 @@ docker build -t com3524-toolkit .
 ```
 
 ### 7. **Run Docker Container**
-Replace `192.168.1.64` with your actual IP:
+Replace `192.168.1.0` with your actual IP:
 ```bash
-docker run -it   -p 5000:5000   -e DISPLAY=192.168.1.64:0   com3524-toolkit
+docker run -it   -p 5000:5000   -e DISPLAY=192.168.1.0:0   com3524-toolkit
 ```
-
 ---
 
 ## 🐳 Docker Image Info
@@ -240,5 +203,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Author
 Ayesha Sana– for COM3524, Department of Computer Science  
-=======
-Ayesha Sana – for COM3524, Department of Computer Science  
