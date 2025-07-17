@@ -1,10 +1,8 @@
 # COM 3524 – System Tools
 
-<<<<<<< HEAD
 This repository contains the source code and documentation for the system tools developed for the COM3524 course. 
-=======
+
 This repository contains the source code and documentation for the system tools developed for the COM 3524 course. These tools are designed for educational purposes to demonstrate key system-level concepts.
->>>>>>> 60cdb4571d8b158f2bb370d109c3156c7c2167b8
 
 ## Features
 
@@ -14,7 +12,6 @@ This repository contains the source code and documentation for the system tools 
 
 =======
 - Modular, extensible design for course assignments
->>>>>>> 60cdb4571d8b158f2bb370d109c3156c7c2167b8
 
 ---
 
@@ -23,7 +20,6 @@ This repository contains the source code and documentation for the system tools 
 - [Python 3.8+](https://www.python.org/downloads/)
 - `pip` (Python package manager)
 - Git (to clone this repository)
-<<<<<<< HEAD
 ## 🔧 Prerequisites (All Platforms)
 
 Before starting, ensure the following software is installed on your machine:
