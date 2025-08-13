@@ -44,7 +44,7 @@ cd COM3524
 ## Platform-Specific Notes
 ---
 
-## 🪟 Windows Instructions
+## Windows Instructions
 
 ### 1. **Install Required Software**
 - Install Docker Desktop and VcXsrv as mentioned [above](#Prerequisites)
@@ -66,7 +66,7 @@ docker build --no-cache -t com3524-toolkit .
 docker run -it -p 5000:5000 -e DISPLAY=host.docker.internal:0 com3524-toolkit
 ```
 
-## 🐧 Linux (Ubuntu) Instructions
+## Linux (Ubuntu) Instructions
 
 >[!NOTE]
 >No additional configuration is typically required. Make sure you have Python and `pip` installed:
@@ -94,7 +94,7 @@ docker run -it   -e DISPLAY=:0   -v /tmp/.X11-unix:/tmp/.X11-unix   com3524-tool
 ```
 ---
 
-### 🍎  macOS
+### macOS
 
 Ensure Python 3 is installed (macOS may come with Python 2.x by default):
 
@@ -131,7 +131,7 @@ ipconfig getifaddr en1
 
 ### 5. **Allow Access to X Server**
 ```bash
-xhost +YOUR_IP_ADDRESS
+xhost + 127.0.0.1
 ```
 
 ### 6. **Build Docker Image**
@@ -140,9 +140,8 @@ docker build -t com3524-toolkit .
 ```
 
 ### 7. **Run Docker Container**
-Replace `192.168.1.0` with your actual IP:
 ```bash
-docker run -it   -p 5000:5000   -e DISPLAY=192.168.1.0:0   com3524-toolkit
+docker run -it   -p 5000:5000   -e DISPLAY=host.docker.internal:0  com3524-toolkit
 ```
 ---
 
