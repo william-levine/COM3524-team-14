@@ -16,11 +16,11 @@ Before starting, ensure the following softwares and tools are installed on your 
 - Git (to clone this repository)
 
 
-### ✅ Docker Desktop
+###  Docker Desktop
 Download and install Docker Desktop:  
 👉 [https://www.docker.com/products/docker-desktop/]
 
-### ✅ X11 Server
+###  X11 Server
 | Platform | Tool     | Link                                      |
 |----------|----------|-------------------------------------------|
 | Windows  | VcXsrv   | [VcXsrv Download](https://sourceforge.net/projects/vcxsrv/) |
@@ -94,7 +94,7 @@ docker run -it   -e DISPLAY=:0   -v /tmp/.X11-unix:/tmp/.X11-unix   com3524-tool
 ```
 ---
 
-### macOS
+## MacOS
 
 Ensure Python 3 is installed (macOS may come with Python 2.x by default):
 
@@ -123,35 +123,22 @@ conda deactivate
 - Launch XQuartz and enable network connections:
   - Preferences → Security → Check **"Allow connections from network clients"**
 
-### 4. **Find Your IP Address**
-```bash
-ipconfig getifaddr en1
-```
-(Use `en0` if on Ethernet.)
 
-### 5. **Allow Access to X Server**
+### 4. **Allow Access to X Server**
 ```bash
 xhost + 127.0.0.1
 ```
 
-### 6. **Build Docker Image**
+### 5. **Build Docker Image**
 ```bash
 docker build -t com3524-toolkit .
 ```
 
-### 7. **Run Docker Container**
+### 6. **Run Docker Container**
 ```bash
 docker run -it   -p 5000:5000   -e DISPLAY=host.docker.internal:0  com3524-toolkit
 ```
 ---
-
-## 🐳 Docker Image Info
-
-- Docker image name: `com3524-toolkit`
-- Rebuild with:
-```bash
-docker build --no-cache -t com3524-toolkit .
-```
 
 ---
 
