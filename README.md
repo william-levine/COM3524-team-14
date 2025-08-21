@@ -124,7 +124,7 @@ conda deactivate
   - Preferences → Security → Check **"Allow connections from network clients"**
 
 
-### 4. **Allow Access to X Server**
+### 4. **Allow Access to X Server to be run internally in docker**
 ```bash
 xhost + 127.0.0.1
 ```
