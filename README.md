@@ -49,22 +49,18 @@ cd COM3524
 ### 1. **Install Required Software**
 - Install Docker Desktop and VcXsrv as mentioned [above](#Prerequisites)
 
-### 2. **Run VcXsrv**
+### 2. **Run Docker and VcXsrv**
 Launch VcXsrv with:
-- Display number: `0` (NOT `-1`)
 - Multiple windows mode
 - Start no client
 - **Disable access control**
 
-### 3. **Build Docker Image**
+### 3. **Run the script**
 ```bash
-docker build --no-cache -t com3524-toolkit .
+.\windows.bat
 ```
 >[!NOTE]
-### 4. **Run Docker Container**
-```bash
-docker run -it -p 5000:5000 -e DISPLAY=host.docker.internal:0 com3524-toolkit
-```
+>Make sure that docker is running in the background 
 
 ## Linux (Ubuntu) Instructions
 
@@ -124,19 +120,9 @@ conda deactivate
   - Preferences → Security → Check **"Allow connections from network clients"**
 
 
-### 4. **Allow Access to X Server to be run internally in docker**
+### 4. **Run the following script**
 ```bash
-xhost + 127.0.0.1
-```
-
-### 5. **Build Docker Image**
-```bash
-docker build -t com3524-toolkit .
-```
-
-### 6. **Run Docker Container**
-```bash
-docker run -it   -p 5000:5000   -e DISPLAY=host.docker.internal:0  com3524-toolkit
+./mac.sh 
 ```
 ---
 
@@ -147,7 +133,6 @@ docker run -it   -p 5000:5000   -e DISPLAY=host.docker.internal:0  com3524-toolk
 - **GUI doesn't appear?**
   - Ensure X server is running
   - Check that `DISPLAY` is correctly set
-  - Verify you’ve run `xhost +` (or added the right IP)
 
 - **Permission denied**
   - Ensure user is added to Docker group, or run using `sudo`
