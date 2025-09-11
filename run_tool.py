@@ -8,22 +8,39 @@ TOOLS = {
     "3": Path("CAPyle_releaseV2/release/main.py")
 }
 
-print("\nSelect a tool to run:")
-print("1. GA Teaching Tool")
-print("2. ACO Ants Tool")
-print("3. CAPyle Tool")
+def main():
+    while True:
+        print("\nSelect a tool to run:")
+        print("1. GA Teaching Tool")
+        print("2. ACO Ants Tool")
+        print("3. CAPyle Tool")
+        print("4. Exit")
 
-choice = input("Enter 1, 2, or 3: ").strip()
-print(f"You entered: {choice}")
+        choice = input("Choose from the above options: ").strip()
+        print(f"You entered: {choice}")
 
-script = TOOLS.get(choice)
+        if choice == "4":
+            print("Exiting program.")
+            sys.exit(0)
 
-if not script or not script.exists():
-    print("Invalid selection or script not found.")
-    sys.exit(1)
+        script = TOOLS.get(choice)
 
-try:
-    subprocess.run([sys.executable, str(script)], check=True)
-except subprocess.CalledProcessError as e:
-    print(f"An error occurred while running the script: {e}")
-#subprocess.run([sys.executable, str(script)], check=True)
+        if not script or not script.exists():
+            print("Invalid selection or script not found.")
+            continue
+
+        try:
+            subprocess.run([sys.executable, str(script)], check=True)
+            
+        except subprocess.CalledProcessError as e:
+            print(f"An error occurred while running the script: {e}")
+        except KeyboardInterrupt:
+            print("\nExecution interrupted by user. Returning to menu.")
+            continue
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nProgram terminated by user. Goodbye!")
+        sys.exit(0)
