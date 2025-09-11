@@ -82,11 +82,9 @@ sudo docker run hello-world
 If you encounter permission errors:  
 👉 [Fix Docker Permission Denied](https://hosting.com/tutorials/how-to-fix-docker-permission-denied-error)
 
-### 4. **Run Docker with X11 GUI Support**
+### 4. **Run the following script**
 ```bash
-xhost +local:docker  # Allow Docker to access display (run once)
-
-docker run -it   -e DISPLAY=:0   -v /tmp/.X11-unix:/tmp/.X11-unix   com3524-toolkit
+./mac.sh 
 ```
 ---
 
