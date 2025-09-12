@@ -115,7 +115,7 @@ conda deactivate
 - Install from: [https://www.xquartz.org/](https://www.xquartz.org/)
 - After installing, **restart your computer**
 - Launch XQuartz and enable network connections:
-  - Preferences → Security → Check **"Allow connections from network clients"**
+  - Settings → Security → Check **"Allow connections from network clients"**
 
 
 ### 4. **Run the following script**
