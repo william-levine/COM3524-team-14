@@ -10,7 +10,7 @@ docker build -t com3524 .
 docker run -it \
     -p 5000:5000 \
     -e DISPLAY=host.docker.internal:0 \
-    com3524-toolkit \
+    com3524 \
     python3 run_tool.py
 #
 #  Created by Ayesha Sana on 21/08/2025.
