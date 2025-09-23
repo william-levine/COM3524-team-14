@@ -59,8 +59,8 @@ Set the default display settings as follow:
  
  
 <p>
-  <img src="https://github.com/user-attachments/assets/aaef6bd4-151b-4dfa-b957-66b3f91aa650" width="45%" />
-  <img src="https://github.com/user-attachments/assets/c83ba456-e844-4454-ae72-5dc283f863fc" width="45%" />
+  <img src="https://github.com/user-attachments/assets/aaef6bd4-151b-4dfa-b957-66b3f91aa650" width="48%" />
+  <img src="https://github.com/user-attachments/assets/c83ba456-e844-4454-ae72-5dc283f863fc" width="48%" />
 
 </p>
 <p>
