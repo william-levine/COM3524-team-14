@@ -73,6 +73,7 @@ Once you have made sure that the previous steps are done, you are ready to run t
 ```bash
 .\windows.bat
 ```
+
 >[!NOTE]
 >Make sure that docker is running in the background 
 
