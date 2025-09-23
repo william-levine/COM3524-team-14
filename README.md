@@ -95,7 +95,7 @@ sudo docker run hello-world
 
 ### 3. **Fix Permission Denied Errors (Optional)**  
 If you encounter permission errors:  
-👉 [Fix Docker Permission Denied](https://hosting.com/tutorials/how-to-fix-docker-permission-denied-error)
+[Fix Docker Permission Denied](https://hostinger.com/tutorials/how-to-fix-docker-permission-denied-error)
 
 ### 4. **Run the following script**
 ```bash
