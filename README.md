@@ -64,7 +64,7 @@ Set the default display settings as follow:
 
 </p>
 <p>
-  <img width="612" height="480" alt="image" src="https://github.com/user-attachments/assets/157322a4-18c8-460b-b2b7-773d6bc17a61" />
+  <img src="https://github.com/user-attachments/assets/157322a4-18c8-460b-b2b7-773d6bc17a61" width="45%"/>
 </p>
   </br>
 - Once the configuration is completed, a small X symbol would appear on the bottom right panel of your screen as follow:
