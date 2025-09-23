@@ -49,6 +49,12 @@ cd COM3524
 ### 1. **Install Required Software**
 - Install Docker Desktop and VcXsrv as mentioned [above](#Prerequisites)
 
+### 2. **Running VcXsrv**
+- After installing VcXsrv software, run the server (Xlaunch)
+- Set the default display settings as follow:
+- <img width="620" height="482" alt="image" src="https://github.com/user-attachments/assets/aaef6bd4-151b-4dfa-b957-66b3f91aa650" />
+
+
 ### 2. **Run Docker and VcXsrv**
 Launch VcXsrv with:
 - Multiple windows mode
