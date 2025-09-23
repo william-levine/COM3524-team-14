@@ -49,19 +49,23 @@ cd COM3524
 ### 1. **Install Required Software**
 - Install Docker Desktop and VcXsrv as mentioned [above](#Prerequisites)
 
-### 2. **Running VcXsrv**
-- After installing VcXsrv software, run the server (Xlaunch)
-- Set the default display settings as follow:
-- 
+### 2. **Run Docker and X Server in the background **
+After installing VcXsrv software, run the server (Xlaunch)
+Set the default display settings as follow:
+  - Multiple windows mode
+  - Start no client
+  - **Disable access control**
+ 
 <img width="620" height="482" alt="image" src="https://github.com/user-attachments/assets/aaef6bd4-151b-4dfa-b957-66b3f91aa650" />
+
 <img width="621" height="485" alt="image" src="https://github.com/user-attachments/assets/c83ba456-e844-4454-ae72-5dc283f863fc" />
 
+<img width="612" height="480" alt="image" src="https://github.com/user-attachments/assets/157322a4-18c8-460b-b2b7-773d6bc17a61" />
 
-### 2. **Run Docker and VcXsrv**
-Launch VcXsrv with:
-- Multiple windows mode
-- Start no client
-- **Disable access control**
+- Once the configuration is completed, a small X symbol would appear on the bottom right panel of your screen as follow:
+  <img width="467" height="192" alt="image" src="https://github.com/user-attachments/assets/c56ef8b4-db6e-419e-8f5b-02251e338761" />
+
+- This confirms that the X server is running in the background.
 
 ### 3. **Run the script**
 ```bash
