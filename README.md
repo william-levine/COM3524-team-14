@@ -68,6 +68,8 @@ Set the default display settings as follow:
 - This confirms that the X server is running in the background.
 
 ### 3. **Run the script**
+Once you have made sure that the previous steps are done, you are ready to run the script:
+
 ```bash
 .\windows.bat
 ```
