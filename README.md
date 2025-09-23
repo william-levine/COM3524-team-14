@@ -64,8 +64,10 @@ Set the default display settings as follow:
   <img src="https://github.com/user-attachments/assets/157322a4-18c8-460b-b2b7-773d6bc17a61" />
 </p>
   </br>
-<p align="center>
+
 - Once the configuration is completed, a small X symbol would appear on the bottom right panel of your screen as follow:
+  
+<p align="center>
   <img src="https://github.com/user-attachments/assets/c56ef8b4-db6e-419e-8f5b-02251e338761" /> <br /> 
 </p>
 - This confirms that the X server is running in the background.
