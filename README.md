@@ -104,7 +104,7 @@ If you encounter permission errors:
 
 ### 4. **Run the following script**
 ```bash
-./mac.sh 
+./linux.sh 
 ```
 ---
 
