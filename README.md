@@ -58,7 +58,7 @@ Set the default display settings as follow:
   - **Disable access control**
  
  
-<img width="620" height="482" alt="image" src="https://github.com/user-attachments/assets/aaef6bd4-151b-4dfa-b957-66b3f91aa650" /> <br /> 
+<img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/aaef6bd4-151b-4dfa-b957-66b3f91aa650" /> <br /> 
 
 
 <img width="621" height="485" alt="image" src="https://github.com/user-attachments/assets/c83ba456-e844-4454-ae72-5dc283f863fc" /> <br /> 
