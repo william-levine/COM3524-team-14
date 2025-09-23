@@ -8,7 +8,7 @@ This repository contains the source code and documentation for the system tools 
 - Modular, extensible design for course assignments
 
 ---
-## 🔧 Prerequisites (All Platforms)
+## 🔧 Prerequisites
 Before starting, ensure the following softwares and tools are installed on your machine:
 
 - [Python 3.8+](https://www.python.org/downloads/)
