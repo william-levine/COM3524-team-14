@@ -34,6 +34,7 @@ Download and install Docker Desktop:
 ## Installation
 
 ### 1. Clone the Repository
+Clone this repository and navigate to the COM3524 folder:
 
 ```bash
 git clone https://github.com/ac1asana/COM3524.git
