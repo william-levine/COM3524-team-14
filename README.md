@@ -57,19 +57,18 @@ Set the default display settings as follow:
   - Start no client
   - **Disable access control**
  
- 
-<p align="center>
-  <img src="https://github.com/user-attachments/assets/aaef6bd4-151b-4dfa-b957-66b3f91aa650" />
-  <img src="https://github.com/user-attachments/assets/c83ba456-e844-4454-ae72-5dc283f863fc" />
-  <img src="https://github.com/user-attachments/assets/157322a4-18c8-460b-b2b7-773d6bc17a61" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/aaef6bd4-151b-4dfa-b957-66b3f91aa650" width="30%" />
+  <img src="https://github.com/user-attachments/assets/c83ba456-e844-4454-ae72-5dc283f863fc" width="30%" />
+  <img src="https://github.com/user-attachments/assets/157322a4-18c8-460b-b2b7-773d6bc17a61" width="30%" />
 </p>
-  </br>
 
-- Once the configuration is completed, a small X symbol would appear on the bottom right panel of your screen as follow:
-  
-<p align="center>
-  <img src="https://github.com/user-attachments/assets/c56ef8b4-db6e-419e-8f5b-02251e338761" width = 45%/> <br /> 
+- Once the configuration is completed, a small X symbol will appear on the bottom right panel of your screen:
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c56ef8b4-db6e-419e-8f5b-02251e338761" width="45%" />
 </p>
+
 - This confirms that the X server is running in the background.
 
 ### 3. **Run the script**
