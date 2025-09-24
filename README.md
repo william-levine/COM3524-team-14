@@ -8,7 +8,7 @@ This repository contains the source code and documentation for the system tools 
 - Modular, extensible design for course assignments
 
 ---
-## 🔧 Prerequisites
+## Prerequisites
 Before starting, ensure the following softwares and tools are installed on your machine:
 
 - [Python 3.8+](https://www.python.org/downloads/)
@@ -18,7 +18,7 @@ Before starting, ensure the following softwares and tools are installed on your 
 
 ###  Docker Desktop
 Download and install Docker Desktop:  
-👉 [https://www.docker.com/products/docker-desktop/]
+[https://www.docker.com/products/docker-desktop/]
 
 ###  X11 Server
 | Platform | Tool     | Link                                      |
@@ -90,7 +90,7 @@ Once you have made sure that the previous steps are done, you are ready to run t
 ### 1. **Install Docker**
 
 Follow Docker’s official guide:  
-👉 [https://docs.docker.com/engine/install/ubuntu](https://docs.docker.com/engine/install/ubuntu)
+[https://docs.docker.com/engine/install/ubuntu](https://docs.docker.com/engine/install/ubuntu)
 
 ### 2. **Set Up Repository and Test Docker**
 ```bash
@@ -145,7 +145,7 @@ conda deactivate
 
 ---
 
-## ❗ Troubleshooting
+##  Troubleshooting
 
 - **GUI doesn't appear?**
   - Ensure X server is running
@@ -156,7 +156,6 @@ conda deactivate
 
 ---
 
-=======
 ## Usage
 
 After installation, run the main program with:
