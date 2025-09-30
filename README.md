@@ -50,7 +50,7 @@ cd COM3524
 ### 1. **Install Required Software**
 - Install Docker Desktop and VcXsrv as mentioned [above](#Prerequisites)
 
-### 2. **Run Docker and X Server in the background **
+### 2. Run Docker and X Server in the background
 After installing VcXsrv software, run the server (Xlaunch)
 Set the default display settings as follow:
   - Multiple windows mode
@@ -71,7 +71,7 @@ Set the default display settings as follow:
 
 - This confirms that the X server is running in the background.
 
-### 3. **Run the script**
+### 3. Run the script
 Once you have made sure that the previous steps are done, you are ready to run the script:
 
 ```bash
@@ -97,7 +97,7 @@ Follow Docker’s official guide:
 sudo docker run hello-world
 ```
 
-### 3. **Fix Permission Denied Errors (Optional)**  
+### 3. Fix Permission Denied Errors (Optional)
 If you encounter permission errors:  
 [Fix Docker Permission Denied](https://hostinger.com/tutorials/how-to-fix-docker-permission-denied-error)
 
@@ -115,7 +115,7 @@ Ensure Python 3 is installed (macOS may come with Python 2.x by default):
 brew install python
 ```
 
-### 1. **Use the Zsh Shell**
+### 1. Use the Zsh Shell
 Check with:
 ```bash
 echo $SHELL
