@@ -175,10 +175,5 @@ This will display a menu or command-line interface for interacting with the avai
 - On Windows, run the command prompt or PowerShell as Administrator if access is denied.
 
 ---
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
----
-
 ## Author
 Ayesha Sana, Department of Computer Science  
