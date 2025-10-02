@@ -156,15 +156,7 @@ conda deactivate
 
 ---
 
-## Usage
 
-After installation, run the main program with:
-
-```bash
-python main.py
-```
-
-This will display a menu or command-line interface for interacting with the available system tools.
 
 ---
 
