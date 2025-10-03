@@ -14,7 +14,7 @@ docker build -t %IMAGE_NAME% .
 REM ---- RUN CONTAINER ----
 echo Running web app on http://127.0.0.1:5000 ...
 docker run -it ^
-    -p 5000:5000 ^                 REM Map container’s port 5000 -> host 127.0.0.1:5000
+    -p 5000:5000 ^                 
     %IMAGE_NAME% ^
     python3 run_tool.py
 
