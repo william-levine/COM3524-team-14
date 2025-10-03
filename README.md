@@ -75,7 +75,7 @@ Set the default display settings as follow:
 Once you have made sure that the previous steps are done, you are ready to run the script:
 
 ```bash
-.\windows.bat
+.\windows_updated.bat
 ```
 
 >[!NOTE]
