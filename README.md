@@ -75,9 +75,15 @@ Set the default display settings as follow:
 Once you have made sure that the previous steps are done, you are ready to run the script:
 
 ```bash
-.\windows_updated.bat
+.\windows.bat
 ```
+After running the script, a shell **root@com3524:/src#** opens inside the container.
+Inside that shell, start the tools menu with: 
 
+```bash
+python run_tool.py 
+```
+---
 >[!NOTE]
 >Make sure that docker is running in the background 
 
@@ -142,8 +148,8 @@ conda deactivate
 ./mac.sh 
 ```
 
-After running the script, a shell **root@com3524:/app#** opens inside the container.
-Inside that shell, start the tool menu with: 
+After running the script, a shell **root@com3524:/src#** opens inside the container.
+Inside that shell, start the tools menu with: 
 
 ```bash
 python run_tool.py 
@@ -170,7 +176,7 @@ python run_tool.py
 - Click the bottom left double arrows icon
 - Select **Attach to Running Container**
 - Choose the container named **com3524**
-- Next open folder named /app and now it should show all your files within the container you can eaily edit
+- Next open folder named /src and now it should show all your files within the container you can eaily edit
 
 
 >[!NOTE]
