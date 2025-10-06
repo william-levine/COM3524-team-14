@@ -141,8 +141,13 @@ conda deactivate
 ```bash
 ./mac.sh 
 ```
----
 
+After running the script, a shell **root@com3524:/app#** opens inside the container.
+Inside that shell, start the tool menu with: 
+
+```bash
+python run_tool.py 
+```
 ---
 
 ##  Troubleshooting
@@ -154,18 +159,22 @@ conda deactivate
 - **Permission denied**
   - Ensure user is added to Docker group, or run using `sudo`
 
----
-
-
-
----
-
-## Troubleshooting
-
 - Ensure you’re using **Python 3.8 or higher**.
 - For permission errors on Linux/macOS, try using `sudo` if needed.
 - On Windows, run the command prompt or PowerShell as Administrator if access is denied.
 
 ---
+
+## Editing code in VS Code
+- Open VS Code
+- Click the bottom left double arrows icon
+- Select **Attach to Running Container**
+- Choose the container named **com3524**
+- Next open folder named /app and now it should show all your files within the container you can eaily edit
+
+
+>[!NOTE]
+>Make sure that your container is running and you are in the interactive shell
+
 ## Author
 Ayesha Sana, Department of Computer Science  
