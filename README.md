@@ -77,7 +77,13 @@ Once you have made sure that the previous steps are done, you are ready to run t
 ```bash
 .\windows.bat
 ```
+After running the script, a shell **root@com3524:/src#** opens inside the container.
+Inside that shell, start the tools menu with: 
 
+```bash
+python run_tool.py 
+```
+---
 >[!NOTE]
 >Make sure that docker is running in the background 
 
@@ -141,8 +147,13 @@ conda deactivate
 ```bash
 ./mac.sh 
 ```
----
 
+After running the script, a shell **root@com3524:/src#** opens inside the container.
+Inside that shell, start the tools menu with: 
+
+```bash
+python run_tool.py 
+```
 ---
 
 ##  Troubleshooting
@@ -154,26 +165,36 @@ conda deactivate
 - **Permission denied**
   - Ensure user is added to Docker group, or run using `sudo`
 
----
-
-## Usage
-
-After installation, run the main program with:
-
-```bash
-python main.py
-```
-
-This will display a menu or command-line interface for interacting with the available system tools.
-
----
-
-## Troubleshooting
-
 - Ensure you’re using **Python 3.8 or higher**.
 - For permission errors on Linux/macOS, try using `sudo` if needed.
 - On Windows, run the command prompt or PowerShell as Administrator if access is denied.
 
 ---
+
+## Editing code in VS Code
+- Open VS Code
+- Click the bottom left double arrows icon
+- Select **Attach to Running Container**
+- Choose the container named **com3524**
+- Next open folder named /src and now it should show all your files within the container you can eaily edit
+
+>[!NOTE]
+>Make sure that your container is running and you are in the interactive shell
+
+
+## Stopping the container
+- Once you are done using the tools, type
+```bash
+exit 
+```
+inside the container shell
+
+- To remove container completely, run:
+```bash
+docker rm com3524 
+```
+
+
+
 ## Author
 Ayesha Sana, Department of Computer Science  
