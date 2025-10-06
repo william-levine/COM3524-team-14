@@ -178,6 +178,10 @@ python run_tool.py
 - Choose the container named **com3524**
 - Next open folder named /src and now it should show all your files within the container you can eaily edit
 
+>[!NOTE]
+>Make sure that your container is running and you are in the interactive shell
+
+
 ## Stopping the container
 - Once you are done using the tools, type
 ```bash
@@ -190,8 +194,7 @@ inside the container shell
 docker rm com3524 
 ```
 
->[!NOTE]
->Make sure that your container is running and you are in the interactive shell
+
 
 ## Author
 Ayesha Sana, Department of Computer Science  
