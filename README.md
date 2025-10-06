@@ -178,6 +178,17 @@ python run_tool.py
 - Choose the container named **com3524**
 - Next open folder named /src and now it should show all your files within the container you can eaily edit
 
+## Stopping the container
+- Once you are done using the tools, type
+```bash
+exit 
+```
+inside the container shell
+
+- To remove container completely, run:
+```bash
+docker rm com3524 
+```
 
 >[!NOTE]
 >Make sure that your container is running and you are in the interactive shell
