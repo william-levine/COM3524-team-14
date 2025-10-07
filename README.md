@@ -42,6 +42,9 @@ cd COM3524
 ```
 ---
 
+>[!NOTE]
+>Before running the tools make sure that you have the latest update of this repository by typing **git pull**
+
 ## Platform-Specific Notes
 ---
 
