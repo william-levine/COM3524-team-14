@@ -71,6 +71,8 @@ Set the default display settings as follow:
 
 - This confirms that the X server is running in the background.
 
+- Next, open the script (linux.sh, mac.sh or windows.bat) which you will be running based on your operating system and replace this line **/Users/ayesha/Desktop/COM3524:/src \** with the full path on your own local directory where you have cloned this repository.
+- 
 ### 3. Run the script
 Once you have made sure that the previous steps are done, you are ready to run the script:
 
@@ -170,6 +172,7 @@ python run_tool.py
 - On Windows, run the command prompt or PowerShell as Administrator if access is denied.
 
 ---
+
 
 ## Editing code in VS Code
 - Open VS Code
