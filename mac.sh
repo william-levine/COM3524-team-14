@@ -10,7 +10,7 @@ docker build -t com3524 .
 docker run -it \
     -p 5001:5000 \
     -e DISPLAY=host.docker.internal:0 \
-    -v /Users/ayesha/Desktop/COM3524:/src \
+    -v "$(pwd)":/src \
     --name com3524 \
     --hostname com3524 \
     com3524 \
