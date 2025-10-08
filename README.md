@@ -166,7 +166,7 @@ Once you run the command, the following menu should appear, allowing you to sele
 
 <div style="display: flex; align-items: flex-start; gap: 1rem;">
 
-  <img src="https://github.com/user-attachments/assets/62b99fdb-c21e-4d47-add8-1b6166f2dda6" alt="Tools Menu Screenshot" width="400" style="border-radius: 8px;">
+  <img src="https://github.com/user-attachments/assets/62b99fdb-c21e-4d47-add8-1b6166f2dda6" alt="Tools Menu Screenshot" width="500" style="border-radius: 8px;">
 </div>
 
   - The menu allows you to select from available tools.
