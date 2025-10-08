@@ -162,8 +162,18 @@ python run_tool.py
 ```
 ---
 
-It should open the menu as follow:
-<img width="567" height="396" alt="image" src="https://github.com/user-attachments/assets/2d9bdf30-ef65-4474-bcaf-ec2c67e55bd3" />
+Once you run the command, the following menu should appear, allowing you to select which tool to launch.
+
+<div style="display: flex; align-items: flex-start; gap: 1rem;">
+
+  <img src="https://github.com/user-attachments/assets/62b99fdb-c21e-4d47-add8-1b6166f2dda6" alt="Tools Menu Screenshot" width="400" style="border-radius: 8px;">
+  <div>
+  - The menu allows you to select from available tools.  
+  - Use the number keys (1–3) to choose the desired tool.  
+  - Once selected, the corresponding interface (GUI or web) will open. 
+  </div>
+
+</div>
 
 ##  Troubleshooting
 
