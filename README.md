@@ -53,7 +53,7 @@ cd COM3524
 ### 1. **Install Required Software**
 - Install Docker Desktop and VcXsrv as mentioned [above](#Prerequisites)
 
-### 2. Run Docker and X Server in the background
+### 2.1. Run Docker and X Server in the background
 After installing VcXsrv software, run the server (Xlaunch)
 Set the default display settings as follow:
   - Multiple windows mode
@@ -74,7 +74,7 @@ Set the default display settings as follow:
 
 - This confirms that the X server is running in the background.
 
-### Edit the script to add your local path
+### 2.2. Edit the script to add your local path
 Next, open the script (linux.sh, mac.sh or windows.bat) which you will be running based on your operating system and replace this line **/Users/ayesha/Desktop/COM3524** with the full path on your own local directory where you have cloned this repository.
 
 ### 3. Run the script
@@ -201,7 +201,13 @@ inside the container shell
 docker rm com3524 
 ```
 
+## Running tools outside Docker environment
+- If you encounter issues running the tools in the Docker environment, you can follow these instructions to run them directly.
 
+- Navigate to the cloned repository using `cd` and run the following command 
+```bash
+python run_tool.py
+```
 
 ## Author
 Ayesha Sana, Department of Computer Science  
