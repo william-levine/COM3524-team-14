@@ -1,7 +1,7 @@
 
 @echo off
 REM ============================
-REM Running Teaching Tool Web Server on Windows with Docker
+REM Running Teaching Tool Web Server on Windows with Docker - author: Ayesha Sana
 REM ============================
 
 REM ---- CONFIG ----
