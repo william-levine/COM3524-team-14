@@ -162,6 +162,9 @@ python run_tool.py
 ```
 ---
 
+It should open the menu as follow:
+<img width="567" height="396" alt="image" src="https://github.com/user-attachments/assets/2d9bdf30-ef65-4474-bcaf-ec2c67e55bd3" />
+
 ##  Troubleshooting
 
 - **GUI doesn't appear?**
