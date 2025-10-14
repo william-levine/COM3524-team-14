@@ -3,7 +3,7 @@ FROM python:3.8-slim
 
 WORKDIR /src
 
-# COPY . /app
+COPY . /src
 
 
 # Install system dependencies including Tk and nano
