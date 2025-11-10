@@ -2,6 +2,7 @@
 
 #  com3524.sh
 xhost +127.0.0.1
+xhost +local:
 
 # 2. Build the image (rebuild every time if needed)
 docker build -t com3524 .
@@ -11,6 +12,7 @@ docker run -it \
     -p 5000:5000 \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v "$(pwd)":/src \
     com3524 \
     bash
 #

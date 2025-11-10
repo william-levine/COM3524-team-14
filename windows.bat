@@ -16,6 +16,7 @@ echo Running web app on http://127.0.0.1:5000 ...
 docker run -it ^
     -e DISPLAY=host.docker.internal:0.0 ^
     -p 5000:5000 ^
+    -v "%CD%":/src ^
     %IMAGE_NAME% ^
     bash
 
