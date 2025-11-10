@@ -3,23 +3,19 @@ import sys
 from pathlib import Path
 
 TOOLS = {
-    "1": Path("GA_Teaching_Tool/teaching_tool.py"),
-    "2": Path("ACO_Teaching_Tool/antsp/app.py"),
-    "3": Path("CAPyle_releaseV2/release/main.py")
+    "1": Path("CAPyle_releaseV2/release/main.py")
 }
 
 def main():
     while True:
         print("\nSelect a tool to run:")
-        print("1. GA Teaching Tool")
-        print("2. ACO Ants Tool")
-        print("3. CAPyle Tool")
-        print("4. Exit")
+        print("1. CAPyle Tool")
+        print("2. Exit")
 
         choice = input("Choose from the above options: ").strip()
         print(f"You entered: {choice}")
 
-        if choice == "4":
+        if choice == "2":
             print("Exiting program.")
             sys.exit(0)
 
