@@ -27,6 +27,8 @@ class CAConfig(object):
         they are filled in with defaults here """
         # rule number
         self.rule_num = 0 if self.rule_num is None else self.rule_num
+        self.forest = np.full((2,3),0)
+        self.
         # number of generations
         if self.num_generations is None:
             self.num_generations = 100
@@ -42,6 +44,8 @@ class CAConfig(object):
         if self.initial_grid is None:
             fillstate = self.states[0] if self.states is not None else 0
             self.initial_grid = np.zeros(self.grid_dims, dtype=type(fillstate))
+
+          
             self.initial_grid.fill(fillstate)
 
         # neighbourhood array
