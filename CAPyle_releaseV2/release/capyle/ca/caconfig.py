@@ -26,9 +26,7 @@ class CAConfig(object):
         """ if any of the fields are not filled in in description
         they are filled in with defaults here """
         # rule number
-        self.rule_num = 0 if self.rule_num is None else self.rule_num
-        self.forest = np.full((2,3),0)
-        self.
+
         # number of generations
         if self.num_generations is None:
             self.num_generations = 100
@@ -43,10 +41,18 @@ class CAConfig(object):
         # initial grid
         if self.initial_grid is None:
             fillstate = self.states[0] if self.states is not None else 0
-            self.initial_grid = np.zeros(self.grid_dims, dtype=type(fillstate))
+            self.rule_num = 0 if self.rule_num is None else self.rule_num
+            
+            self.size = 10
+            self.forest = np.ones((3*self.size,2*self.size), dtype=type(fillstate))
+            self.lake = np.full((2*self.size,5*self.size),2, dtype=type(fillstate))
+            self.chaparral = np.full((4,5),3, dtype=type(fillstate))
+            self.canyon = np.full((4,4),4, dtype=type(fillstate))
 
-          
+            self.initial_grid = np.zeros(self.grid_dims, dtype=type(fillstate))  
             self.initial_grid.fill(fillstate)
+            self.initial_grid[3:3+self.forest.shape[0], 3:3+self.forest.shape[1]]+= self.forest
+            self.initial_grid[67:67+self.lake.shape[0], 67:67+self.lake.shape[1]]+= self.lake
 
         # neighbourhood array
         if self.nhood_arr is None:
