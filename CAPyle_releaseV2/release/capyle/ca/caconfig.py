@@ -44,15 +44,17 @@ class CAConfig(object):
             self.rule_num = 0 if self.rule_num is None else self.rule_num
             
             self.size = 10
-            self.forest = np.ones((3*self.size,2*self.size), dtype=type(fillstate))
+            self.forest = np.ones((9*self.size,2*self.size), dtype=type(fillstate))
             self.lake = np.full((2*self.size,5*self.size),2, dtype=type(fillstate))
-            self.chaparral = np.full((4,5),3, dtype=type(fillstate))
-            self.canyon = np.full((4,4),4, dtype=type(fillstate))
+            self.chaparral = np.full((4*self.size,5*self.size),3, dtype=type(fillstate))
+            self.canyon = np.full((4*self.size,4*self.size),4, dtype=type(fillstate))
 
             self.initial_grid = np.zeros(self.grid_dims, dtype=type(fillstate))  
             self.initial_grid.fill(fillstate)
             self.initial_grid[3:3+self.forest.shape[0], 3:3+self.forest.shape[1]]+= self.forest
             self.initial_grid[67:67+self.lake.shape[0], 67:67+self.lake.shape[1]]+= self.lake
+            self.initial_grid[15:15+self.chaparral.shape[0], 89:89+self.chaparral.shape[1]]+= self.chaparral
+            self.initial_grid[89:89+self.canyon.shape[0], 120:120+self.canyon.shape[1]]+= self.canyon
 
         # neighbourhood array
         if self.nhood_arr is None:
