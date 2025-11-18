@@ -9,8 +9,7 @@ __pycache__/
 *.pkl
 *.pickle
 
-release/
-dist/
 build/
 
 CAPyle_releaseV2/release/capyle/__pycache__/*
+CAPyle_releaseV2/release/temp/*
