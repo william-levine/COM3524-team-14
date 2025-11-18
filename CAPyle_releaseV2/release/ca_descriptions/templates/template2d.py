@@ -21,14 +21,20 @@ def setup(args):
     config_path = args[0]
     config = utils.load(config_path)
     # -- THE CA MUST BE RELOADED IN THE GUI IF ANY OF THE BELOW ARE CHANGED --
-    config.title = "NAME"
+    config.title = "Modelling Forest Fire"
     config.dimensions = 2
-    config.states = STATES
+    config.states = (0,1,2,3,4)
     # -------------------------------------------------------------------------
 
     # ---- Override the defaults below (these may be changed at anytime) ----
 
-    # config.state_colors = [(0,0,0),(1,1,1)]
+    config.state_colors = [
+        (1,1,1),
+        (0,1,0),
+        (0.67,0.85,0.90),
+        (0.70,0.59,0.02),
+        (0.0,0.70,0.54)
+    ]
     # config.grid_dims = (200,200)
 
     # ----------------------------------------------------------------------
