@@ -23,13 +23,15 @@ def setup(args):
     # -- THE CA MUST BE RELOADED IN THE GUI IF ANY OF THE BELOW ARE CHANGED --
     config.title = "Modelling Forest Fire"
     config.dimensions = 2
-    config.states = (0,1,2,3,4)
+    config.states = (0,1,2,3,4,5,6)
 
     # 0 = no element 
     # 1 = forest 
     # 2 = lake
     # 3 = chapparal
     # 4 = canyon 
+    # 5 = burning state
+    # 6 = burnt state
     # -------------------------------------------------------------------------
 
     # ---- Override the defaults below (these may be changed at anytime) ----
@@ -39,7 +41,9 @@ def setup(args):
         (0,1,0),            # forest 
         (0.67,0.85,0.90),   # lake
         (0.70,0.59,0.02),   # chaparral
-        (0.0,0.70,0.54)     # canyon
+        (0.0,0.70,0.54),    # canyon
+        (1,0.3,0),          # burning state
+        (0,0,0)             # burnt state
     ]
     # config.grid_dims = (200,200)
 
