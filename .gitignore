@@ -12,3 +12,5 @@ __pycache__/
 release/
 dist/
 build/
+
+CAPyle_releaseV2/release/capyle/__pycache__/*
