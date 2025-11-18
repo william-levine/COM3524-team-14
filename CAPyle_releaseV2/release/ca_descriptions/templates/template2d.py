@@ -24,16 +24,22 @@ def setup(args):
     config.title = "Modelling Forest Fire"
     config.dimensions = 2
     config.states = (0,1,2,3,4)
+
+    # 0 = no element 
+    # 1 = forest 
+    # 2 = lake
+    # 3 = chapparal
+    # 4 = canyon 
     # -------------------------------------------------------------------------
 
     # ---- Override the defaults below (these may be changed at anytime) ----
 
     config.state_colors = [
-        (1,1,1),
-        (0,1,0),
-        (0.67,0.85,0.90),
-        (0.70,0.59,0.02),
-        (0.0,0.70,0.54)
+        (1,1,1),            # no element/ white background
+        (0,1,0),            # forest 
+        (0.67,0.85,0.90),   # lake
+        (0.70,0.59,0.02),   # chaparral
+        (0.0,0.70,0.54)     # canyon
     ]
     # config.grid_dims = (200,200)
 
