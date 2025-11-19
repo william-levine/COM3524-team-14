@@ -79,10 +79,10 @@ def transition_function(grid, neighbourstates, neighbourcounts):
 
     #Ignite probability
     IGNITE_PROB = {
-        0 : 0.5,
+        0 : 0.6,
         1 : 0.1,
         2 : 0.0,
-        3 : 0.7
+        3 : 0.9
     }
 
 
@@ -98,14 +98,13 @@ def transition_function(grid, neighbourstates, neighbourcounts):
 
         # find cells that will burn
         adjacency = (grid == terrain) & (burning>0)
-
-        # # include burning duration for each element
         # burning_duration = BURN_DURATION[terrain]
-        # burnt_state = ( grid == burning ) & (grid == )
+        # burnt_state = ( grid == burning )  
+        adjusted_prob = np.min((burning * 0.05) + prob, 1)
 
         # method to decide to burn
         rand = np.random.random()
-        ignite = adjacency & (rand <prob)
+        ignite = adjacency & (rand < adjusted_prob)
 
         # ignite
         grid[ignite] = 5
