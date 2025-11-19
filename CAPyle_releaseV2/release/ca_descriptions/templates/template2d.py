@@ -25,25 +25,30 @@ def setup(args):
     config.dimensions = 2
     config.states = (0,1,2,3,4,5,6)
 
-    # 0 = no element 
-    # 1 = forest 
+    # 0 = chaparral
+    # 1 = forest
     # 2 = lake
-    # 3 = chapparal
-    # 4 = canyon 
-    # 5 = burning state
-    # 6 = burnt state
+    # 3 = canyon
+    # 4 = town
+    # 5 = burning
+    # 6 = burnt
+
+
     # -------------------------------------------------------------------------
 
     # ---- Override the defaults below (these may be changed at anytime) ----
 
     config.state_colors = [
-        (0,1,0),            # forest 
-        (0.67,0.85,0.90),   # lake
-        (0.70,0.59,0.02),   # chaparral
-        (0.0,0.70,0.54),    # canyon
-        (0.48,0.24,0),       # town 
-        (1,0.3,0),          # burning state
-        (0,0,0)            # burnt state
+        (0.749019608,0.749019608,0),            # chaparral
+        (0.309803922,0.384313725,0.152941176),  # forest
+        (0.239215686,0.690196078,0.941176471),  # lake
+        (0.996078431,1,0),                      # canyon
+        (0.48,0.24,0),                          # town 
+        (1,0.3,0),                              # burning
+        (0,0,0)                                 # burnt
+
+
+
 
     ]
     # config.grid_dims = (200,200)
