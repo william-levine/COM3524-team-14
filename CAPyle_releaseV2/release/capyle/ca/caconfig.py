@@ -37,12 +37,15 @@ class CAConfig(object):
                 self.grid_dims = (200, 200)
             else:
                 self.grid_dims = gens_to_dims(self.num_generations)
+            
 
         # initial grid
         if self.initial_grid is None:
             fillstate = self.states[0] if self.states is not None else 0
             self.rule_num = 0 if self.rule_num is None else self.rule_num
-            
+
+            POWER_STATION = "LEFT" # "RIGHT"
+
             self.size = 10
             self.forest = np.ones((9*self.size,2*self.size), dtype=type(fillstate))
             self.lake = np.full((2*self.size,5*self.size),2, dtype=type(fillstate))
@@ -55,6 +58,11 @@ class CAConfig(object):
             self.initial_grid[67:67+self.lake.shape[0], 67:67+self.lake.shape[1]]+= self.lake
             self.initial_grid[15:15+self.chaparral.shape[0], 89:89+self.chaparral.shape[1]]+= self.chaparral
             self.initial_grid[89:89+self.canyon.shape[0], 120:120+self.canyon.shape[1]]+= self.canyon
+            
+            if POWER_STATION == "LEFT":
+                self.initial_grid[0,0] = 5
+            elif POWER_STATION == "RIGHT":
+                self.initial_grid[0,-1] = 5
 
         # neighbourhood array
         if self.nhood_arr is None:
