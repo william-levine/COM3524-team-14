@@ -12,7 +12,7 @@ sys.path.append(main_dir_loc + 'capyle/ca')
 sys.path.append(main_dir_loc + 'capyle/guicomponents')
 # ---
 
-from capyle.ca import Grid2D, Neighbourhood, randomise2d
+from capyle.ca import Grid2D, Neighbourhood, randomise2d, CAConfig
 import capyle.utils as utils
 import numpy as np
 
@@ -25,6 +25,8 @@ def setup(args):
     config.title = "Modelling Forest Fire"
     config.dimensions = 2
     config.states = (0,1,2,3,4,5,6)
+
+    
 
     # 0 = chapparal
     # 1 = forest 
@@ -52,9 +54,12 @@ def setup(args):
     if len(args) == 2:
         config.save()
         sys.exit()
+    
+    initial_grid = config.initial_grid
+
     return config
 
-def transition_function(grid, neighbourstates, neighbourcounts):
+def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, config):
     """Function to apply the transition rules
     and return the new grid"""
     # YOUR CODE HERE
@@ -71,10 +76,10 @@ def transition_function(grid, neighbourstates, neighbourcounts):
     #Burn Duration
     # 1 iteration = 1/2 day
     BURN_DURATION = {    
-        CHAPARRAL: 14,     #7 days
-        FOREST: 60,        #30 days
+        CHAPARRAL: 30,    # 30 points deducted for each iteration (will last 14 iterations/ 7 days)
+        FOREST: 7,        # 7 points deducted for each iteration (will last 60 iterations/ 30 days)
         LAKE: 0,
-        CANYON: 1          #1/2 day
+        CANYON: 420       # 420 points deducted for each iteration (will last 1 iteration/ 1/2 day) 
     }
 
     #Ignite probability
@@ -85,10 +90,21 @@ def transition_function(grid, neighbourstates, neighbourcounts):
         3 : 0.9
     }
 
+    """ adjacent neighbours have a more intersecting surface points 
+    than corner neighbours, so the probability is higher for 
+    the adjacent neighbours """
+
+    # NW, N, NE, W, E, SW, S, SE = neighbourstates
+    # EXTRA_IGNITION = {
+    #     N,W,E,S : 1,
+    #     NW,NE,SW,SE : 0.5
+    # }
 
     # neighbourcounts stores the number of neighbour for each state
     chaparral, forest, lake, canyon, town, burning, burnt = neighbourcounts
     notburning = (chaparral, forest, lake,canyon)
+
+    initial_grid = config.initial_grid
 
     # burning logic 
     for terrain in (CHAPARRAL, FOREST, LAKE,  CANYON):
@@ -97,17 +113,28 @@ def transition_function(grid, neighbourstates, neighbourcounts):
             continue #skip lake
 
         # find cells that will burn
-        adjacency = (grid == terrain) & (burning>0)
-        # burning_duration = BURN_DURATION[terrain]
-        # burnt_state = ( grid == burning )  
+        adjacency = (grid == terrain) & (burning > 0)
         adjusted_prob = np.min((burning * 0.05) + prob, 1)
 
         # method to decide to burn
         rand = np.random.random()
         ignite = adjacency & (rand < adjusted_prob)
 
-        # ignite
+
+        """as of now, fire dont spread if it is surrounded by burnt area"""
+        # duration of burning 
+        burning_duration = BURN_DURATION[terrain]
+        ## to get the initial element of the cell after it burned (by looking at its neighbour state)
+        #  a better way need to be found to get the initial state of the cell
+        post_burning = ( grid == BURNING ) & (initial_grid == terrain)
+        decay_grid[post_burning] -= burning_duration
+        decayed_to_zero = (decay_grid == 0)
+
+
+        
+        grid[decayed_to_zero] = 6
         grid[ignite] = 5
+        
     
     return grid
 
@@ -118,11 +145,17 @@ def main():
     config = setup(sys.argv[1:])
     
     #initialise the decay grid 
-    # decaygrid = np.zeros(config.grid_dims)
-    # decaygrid.fill(2)
+    decay_grid = np.zeros(config.grid_dims)
+
+    """420 because it is the least common multiple for 60 and 14.
+    the burning duration kinda work like merit point,
+    for each iteration, 7 points will be deducted from
+    forest element, once it reaches 0 (basically after 60 iteration),
+    it will go to burnt state, same for other element"""
+    decay_grid.fill(420)
 
     # Create grid object using parameters from config + transition function
-    grid = Grid2D(config, transition_function)
+    grid = Grid2D(config, (transition_function, decay_grid, config))
 
     # Run the CA, save grid state every generation to timeline
     timeline = grid.run()
@@ -131,6 +164,7 @@ def main():
     config.save()
     # Save timeline to file
     utils.save(timeline, config.timeline_path)
+    # print("transition function",transition_function)
 
 if __name__ == "__main__":
     main()
