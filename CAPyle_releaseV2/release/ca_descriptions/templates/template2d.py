@@ -20,38 +20,31 @@ def setup(args):
     """Set up the config object used to interact with the GUI"""
     config_path = args[0]
     config = utils.load(config_path)
+
     # -- THE CA MUST BE RELOADED IN THE GUI IF ANY OF THE BELOW ARE CHANGED --
     config.title = "Modelling Forest Fire"
     config.dimensions = 2
     config.states = (0,1,2,3,4,5,6)
 
-    # 0 = no element 
+    # 0 = chapparal
     # 1 = forest 
     # 2 = lake
-    # 3 = chapparal
-    # 4 = canyon 
+    # 3 = canyon
+    # 4 = town
     # 5 = burning state
     # 6 = burnt state
-    # -------------------------------------------------------------------------
-
-    # ---- Override the defaults below (these may be changed at anytime) ----
 
     config.state_colors = [
+        (0.70,0.59,0.02),   # chaparral
         (0,1,0),            # forest 
         (0.67,0.85,0.90),   # lake
-        (0.70,0.59,0.02),   # chaparral
         (0.0,0.70,0.54),    # canyon
-        (0.48,0.24,0),       # town 
+        (0.48,0.24,0),      # town 
         (1,0.3,0),          # burning state
-        (0,0,0)            # burnt state
+        (0,0,0)             # burnt state
 
     ]
-    # config.grid_dims = (200,200)
-
-    # ----------------------------------------------------------------------
-
-    # this probably should be in the caconfig file
- 
+  
     ####################################################
     # the GUI calls this to pass the user defined config
     # into the main system with an extra argument
@@ -91,12 +84,13 @@ def transition_function(grid, neighbourstates, neighbourcounts):
         2 : 0.0,
         3 : 0.7
     }
-  
+
+
+    # neighbourcounts stores the number of neighbour for each state
     chaparral, forest, lake, canyon, town, burning, burnt = neighbourcounts
     notburning = (chaparral, forest, lake,canyon)
 
-    print("neighbourstates",neighbourstates)
-
+    # burning logic 
     for terrain in (CHAPARRAL, FOREST, LAKE,  CANYON):
         prob = IGNITE_PROB[terrain]
         if prob == 0:
@@ -104,8 +98,10 @@ def transition_function(grid, neighbourstates, neighbourcounts):
 
         # find cells that will burn
         adjacency = (grid == terrain) & (burning>0)
-        burning_duration = BURN_DURATION[terrain]
-        burnt_state = ( grid == burning )  
+
+        # # include burning duration for each element
+        # burning_duration = BURN_DURATION[terrain]
+        # burnt_state = ( grid == burning ) & (grid == )
 
         # method to decide to burn
         rand = np.random.random()
@@ -114,32 +110,17 @@ def transition_function(grid, neighbourstates, neighbourcounts):
         # ignite
         grid[ignite] = 5
     
-
-
-    # chances = IGNITE_PROB[]
-    # random_num = np.random.random()
-    # print("random number", random_num)
-    # will_burn = ( burning > 1 ) & (chances > random_num) & (np.isin(grid, notburning))
-    # grid[will_burn] = 5
     return grid
 
-
-
-
- 
-
-    #new grid bcz some cells change state, some don't
-    # no need for this part the backend already did this
-    # current = grid.copy()
-    # new_grid = grid.copy()
-    # 
-    
-    # return new_grid
 
 def main():
     """ Main function that sets up, runs and saves CA"""
     # Get the config object from set up
     config = setup(sys.argv[1:])
+    
+    #initialise the decay grid 
+    # decaygrid = np.zeros(config.grid_dims)
+    # decaygrid.fill(2)
 
     # Create grid object using parameters from config + transition function
     grid = Grid2D(config, transition_function)
