@@ -37,13 +37,14 @@ def setup(args):
     # ---- Override the defaults below (these may be changed at anytime) ----
 
     config.state_colors = [
-        (1,1,1),            # no element/ white background
         (0,1,0),            # forest 
         (0.67,0.85,0.90),   # lake
         (0.70,0.59,0.02),   # chaparral
         (0.0,0.70,0.54),    # canyon
+        (0.48,0.24,0),       # town 
         (1,0.3,0),          # burning state
-        (0,0,0)             # burnt state
+        (0,0,0)            # burnt state
+
     ]
     # config.grid_dims = (200,200)
 
@@ -66,33 +67,45 @@ def transition_function(grid, neighbourstates, neighbourcounts):
     # YOUR CODE HERE
 
     # STATES
-    NO_ELEMENT= 0 
+    CHAPARRAL= 0 
     FOREST = 1
     LAKE = 2
-    CHAPARRAL = 3
-    CANYON = 4
+    CANYON = 3
+    TOWN = 4
     BURNING = 5
     BURNT = 6
 
+    #Burn Duration
+    # 1 iteration = 1/2 day
+    BURN_DURATION = {    
+        CHAPARRAL: 14,     #7 days
+        FOREST: 60,        #30 days
+        LAKE: 0,
+        CANYON: 1          #1/2 day
+    }
+
     #Ignite probability
     IGNITE_PROB = {
-        0 : 0.9,
+        0 : 0.5,
         1 : 0.1,
         2 : 0.0,
-        3 : 0.5,
-        4 : 0.7
+        3 : 0.7
     }
   
-    nothing, forest, lake, chaparral, canyon, burning, burnt = neighbourcounts
-    notburning = (nothing, forest, lake, chaparral,canyon)
+    chaparral, forest, lake, canyon, town, burning, burnt = neighbourcounts
+    notburning = (chaparral, forest, lake,canyon)
 
-    for terrain in (NO_ELEMENT, FOREST, LAKE, CHAPARRAL, CANYON):
+    print("neighbourstates",neighbourstates)
+
+    for terrain in (CHAPARRAL, FOREST, LAKE,  CANYON):
         prob = IGNITE_PROB[terrain]
         if prob == 0:
             continue #skip lake
 
         # find cells that will burn
         adjacency = (grid == terrain) & (burning>0)
+        burning_duration = BURN_DURATION[terrain]
+        burnt_state = ( grid == burning )  
 
         # method to decide to burn
         rand = np.random.random()
@@ -113,16 +126,7 @@ def transition_function(grid, neighbourstates, neighbourcounts):
 
 
 
-      # #Burn Duration
-    # # 1 iteration = 1/2 day
-    # BURN_DURATION = {
-    #     NO_ELEMENT:30,2
-
-    #     FOREST: 60,        #30 days
-    #     LAKE: 0,
-    #     CHAPARRAL: 14,     #7 days
-    #     CANYON: 1          #1/2 day
-    # }
+ 
 
     #new grid bcz some cells change state, some don't
     # no need for this part the backend already did this
