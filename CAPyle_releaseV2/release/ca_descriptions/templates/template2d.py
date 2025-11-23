@@ -25,7 +25,6 @@ def setup(args):
     config.title = "Modelling Forest Fire"
     config.dimensions = 2
     config.states = (0,1,2,3,4,5,6)
-
     
 
     # 0 = chapparal
@@ -37,13 +36,13 @@ def setup(args):
     # 6 = burnt state
 
     config.state_colors = [
-        (0.70,0.59,0.02),   # chaparral
-        (0,1,0),            # forest 
-        (0.67,0.85,0.90),   # lake
-        (0.0,0.70,0.54),    # canyon
-        (0.48,0.24,0),      # town 
-        (1,0.3,0),          # burning state
-        (0,0,0)             # burnt state
+        (0.70, 0.59, 0.02),   # chaparral
+        (0, 1, 0),            # forest 
+        (0.67, 0.85, 0.90),   # lake
+        (0.0, 0.70, 0.54),    # canyon
+        (0.48, 0.24, 0),      # town 
+        (1, 0.3, 0),          # burning state
+        (0, 0, 0)             # burnt state
 
     ]
   
@@ -84,11 +83,13 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
 
     #Ignite probability
     IGNITE_PROB = {
-        0 : 0.6,
-        1 : 0.1,
-        2 : 0.0,
-        3 : 0.9
+        CHAPARRAL : 0.6,
+        FOREST : 0.1,
+        LAKE : 0.0,
+        CANYON : 0.9
     }
+
+    MAX_PROB = 0.9 # not 1 as it will then become deterministic and won't be as realistic
 
     """ adjacent neighbours have a more intersecting surface points 
     than corner neighbours, so the probability is higher for 
@@ -99,6 +100,10 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
     #     N,W,E,S : 1,
     #     NW,NE,SW,SE : 0.5
     # }
+
+
+    # 0:NW, 1:N, 2:NE, 3:W, 4:E, 5:SW, 6:S, 7:SE = neighbourstates
+    wind_direction = 6
 
     # neighbourcounts stores the number of neighbour for each state
     chaparral, forest, lake, canyon, town, burning, burnt = neighbourcounts
@@ -114,7 +119,28 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
 
         # find cells that will burn
         adjacency = (grid == terrain) & (burning > 0)
-        adjusted_prob = np.min((burning * 0.05) + prob, 1)
+
+        # find cells affected by the wind
+        upwind_neighbour_states = neighbourstates[np.abs(7 - wind_direction)]
+        downwind_neighbour_states = neighbourstates[wind_direction] 
+
+        # cells that have a higher chance of catching fire due to wind direction
+        wind_increased = (grid == terrain) & (upwind_neighbour_states == BURNING)
+        # cells that have a lower chance of catching fire due to wind direction
+        wind_decreased = (grid == terrain) & (downwind_neighbour_states == BURNING)
+
+        # additive terms depending on what factors affect the cell
+        burning_increment = burning * 0.05
+        wind_increment = 0.2
+
+        # probability must account for:
+        #   material 'flammability'
+        #   number of burning neighbours
+        #   wind
+        adjusted_prob = np.where(
+            wind_increased,
+            np.minimum((burning_increment + prob) + wind_increment, MAX_PROB),
+            np.minimum(burning_increment + prob, MAX_PROB))
 
         # method to decide to burn
         rand = np.random.random()
