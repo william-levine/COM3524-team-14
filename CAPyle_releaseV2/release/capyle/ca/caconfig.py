@@ -52,9 +52,16 @@ class CAConfig(object):
 
             # matrices for each element
             self.size = 10  # to resize every element at once
-            self.forest = np.ones((9*self.size,2*self.size), dtype=type(fillstate))
-            self.lake = np.full((2*self.size,5*self.size),2, dtype=type(fillstate))
-            self.canyon = np.full((4*self.size,4*self.size),3, dtype=type(fillstate))
+            self.forest = np.ones((8*self.size,3*self.size), dtype=type(fillstate))
+            self.forest1 = np.ones((1*self.size,3*self.size), dtype=type(fillstate))
+            self.forest2 = np.ones((4*self.size,8*self.size), dtype=type(fillstate))
+
+            self.lake = np.full((4*self.size,1*self.size),2, dtype=type(fillstate))
+            self.lake1 = np.full((1*self.size,6*self.size),2, dtype=type(fillstate))
+
+            self.canyon = np.full((9*self.size,1*self.size),3, dtype=type(fillstate))
+
+            self.town = np.full((1*self.size,1*self.size),4, dtype=type(fillstate))
 
 
             # provided in the template
@@ -62,12 +69,18 @@ class CAConfig(object):
             self.initial_grid.fill(fillstate)
 
             # positioning the element in a blank grid
-            self.initial_grid[3:3+self.forest.shape[0], 3:3+self.forest.shape[1]]+= self.forest
-            self.initial_grid[67:67+self.lake.shape[0], 67:67+self.lake.shape[1]]+= self.lake
-            self.initial_grid[89:89+self.canyon.shape[0], 120:120+self.canyon.shape[1]]+= self.canyon
+            self.initial_grid[20:20+self.forest.shape[0], 20:20+self.forest.shape[1]]+= self.forest
+            self.initial_grid[20:20+self.forest1.shape[0], 50:50+self.forest1.shape[1]]+= self.forest1
+            self.initial_grid[100:100+self.forest2.shape[0], 20:20+self.forest2.shape[1]]+= self.forest2
+
+            self.initial_grid[40:40+self.lake.shape[0], 70:70+self.lake.shape[1]]+= self.lake
+            self.initial_grid[160:160+self.lake1.shape[0], 100:100+self.lake1.shape[1]]+= self.lake1
+
+            self.initial_grid[40:40+self.canyon.shape[0], 140:140+self.canyon.shape[1]]+= self.canyon
 
             # positioning the town 
-            self.initial_grid[-1,0] = 4
+            self.initial_grid[175:175+self.town.shape[0], 55:55+self.town.shape[1]]+= self.town
+
             # for different position of power station
             if POWER_STATION == "LEFT":
                 self.initial_grid[0,0] = 5
