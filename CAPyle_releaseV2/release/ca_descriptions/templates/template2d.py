@@ -103,7 +103,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
 
 
     # 0:NW, 1:N, 2:NE, 3:W, 4:E, 5:SW, 6:S, 7:SE = neighbourstates
-    wind_direction = 6
+    wind_direction = 4
 
     # neighbourcounts stores the number of neighbour for each state
     chaparral, forest, lake, canyon, town, burning, burnt = neighbourcounts
@@ -130,8 +130,8 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         wind_decreased = (grid == terrain) & (downwind_neighbour_states == BURNING)
 
         # additive terms depending on what factors affect the cell
-        burning_increment = burning * 0.05
-        wind_increment = 0.2
+        burning_bias = burning * 0.05
+        wind_multiplier = 2
 
         # probability must account for:
         #   material 'flammability'
@@ -139,12 +139,17 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         #   wind
         adjusted_prob = np.where(
             wind_increased,
-            np.minimum((burning_increment + prob) + wind_increment, MAX_PROB),
-            np.minimum(burning_increment + prob, MAX_PROB))
+            np.minimum((prob + burning_bias) * wind_multiplier, MAX_PROB),
+            np.minimum(prob + burning_bias, MAX_PROB))
+        
+        final_prob = np.where(
+            wind_decreased,
+            np.maximum((prob + burning_bias) / wind_multiplier, 0.1),
+            adjusted_prob)
 
         # method to decide to burn
         rand = np.random.random()
-        ignite = adjacency & (rand < adjusted_prob)
+        ignite = adjacency & (rand < final_prob)
 
 
         """as of now, fire dont spread if it is surrounded by burnt area"""
