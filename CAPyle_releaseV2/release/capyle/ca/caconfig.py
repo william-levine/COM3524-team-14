@@ -69,11 +69,12 @@ class CAConfig(object):
 
             # positioning the town 
             self.initial_grid[-1,0] = 4
+
             # for different position of power station
             if POWER_STATION == "LEFT":
-                self.initial_grid[0,0] = 5
+                self.initial_grid[0,20] = 5
             elif POWER_STATION == "RIGHT":
-                self.initial_grid[0,-1] = 5
+                self.initial_grid[0,-10] = 5
 
         # neighbourhood array
         if self.nhood_arr is None:
