@@ -25,6 +25,7 @@ def setup(args):
     config.title = "Modelling Forest Fire"
     config.dimensions = 2
     config.states = (0,1,2,3,4,5,6)
+    # config.num_generations = 150
     
 
     # 0 = chapparal
@@ -103,7 +104,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
 
 
     # 0:NW, 1:N, 2:NE, 3:W, 4:E, 5:SW, 6:S, 7:SE = neighbourstates
-    wind_direction = 4
+    wind_direction = config.wind_direction
 
     # neighbourcounts stores the number of neighbour for each state
     chaparral, forest, lake, canyon, town, burning, burnt = neighbourcounts
