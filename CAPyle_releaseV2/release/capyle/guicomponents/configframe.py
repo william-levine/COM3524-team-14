@@ -4,6 +4,7 @@ from capyle.utils import gens_to_dims, alerterror, alertcontinue
 from capyle.guicomponents import (_GenerationsUI, _GridDimensionsUI,
                                   _Separator, _NeighbourhoodUI, _RuleNumberUI,
                                   _StateColorsUI, _InitialGridUI)
+from firetoggleui import _FireToggleUI
 
 
 class _ConfigFrame(tk.Frame):
@@ -51,10 +52,14 @@ class _ConfigFrame(tk.Frame):
         self.state_colors.pack(fill=tk.BOTH)
 
         self.separator()
+        
+        #Fire direction
+        self.start_fire = _FireToggleUI(self, self.ca_config)
+        self.start_fire.pack(fill=tk.BOTH)
 
         # refresh the frame and graph
         self.update(self.ca_config, self.ca_graph)
-
+ 
     def separator(self):
         """Generate a separator"""
         return _Separator(self).pack(fill=tk.BOTH, padx=5, pady=10)
@@ -72,6 +77,16 @@ class _ConfigFrame(tk.Frame):
         """Get the config from the UI and store in a CAConfig object"""
         ca_config.num_generations = self.generations_entry.get_value()
         ca_config.state_colors = self.state_colors.get_value()
+
+        ca_config.start_fire = self.start_fire.get_value()
+        # print("Fire direction from dropdown:", ca_config.start_fire)
+
+        if ca_config.initial_grid is not None:
+            ca_config.initial_grid[ca_config.initial_grid==5]=0
+            if ca_config.start_fire=="LEFT":
+                ca_config.initial_grid[0,0] = 5
+            else:
+                ca_config.initial_grid[0,-1] = 5
 
         if ca_config.dimensions == 2:
             ca_config.grid_dims = self.griddims_entry.get_value()
@@ -150,3 +165,4 @@ class _ConfigFrame(tk.Frame):
         self.generations_entry.set(self.ca_config.num_generations)
         self.init_grid.update_config(self.ca_config)
         self.state_colors.update(self.ca_config, ca_graph)
+        self.start_fire.set(self.ca_config.start_fire)

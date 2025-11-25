@@ -1,1 +1,15 @@
 .DS_Store
+__pycache__/
+*.pyc
+*.pyo 
+*.pyd 
+
+**/__pycache__/
+
+*.pkl
+*.pickle
+
+build/
+
+CAPyle_releaseV2/release/capyle/__pycache__/*
+CAPyle_releaseV2/release/temp/*
