@@ -6,6 +6,7 @@ class _FireToggleUI(tk.Frame, _ConfigUIComponent):
     def __init__(self, parent, ca_config):
         tk.Frame.__init__(self, parent)
         _ConfigUIComponent.__init__(self)
+        # super().__init__(parent)
 
         self.ca_config = ca_config
 
@@ -25,7 +26,7 @@ class _FireToggleUI(tk.Frame, _ConfigUIComponent):
         labelframe.pack()
 
     def get_value(self):
-        return self.start_fire.get()
+        return self.optvar.get()
 
     def set(self, value):
         self.start_fire.set(value)
