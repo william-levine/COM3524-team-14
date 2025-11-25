@@ -151,9 +151,10 @@ class Grid2D(Grid):
             state_counts[i] = countg
         return state_counts
 
-    def step(self):
+    def step(self,i):
         """ Calculate the next timestep by applying the transistion function
         and save the new state to grid """
+        town_burn = False
         # collect the 8 arrays of neighbour states
         ns = self.get_neighbour_states()
         # calculate the number of neighbours each cell has of each state
@@ -164,12 +165,14 @@ class Grid2D(Grid):
         # passing in the states and counts to allow complex rules
         # if the user supplied any addition arguments, pass them here
         if self.additional_args is None:
-            self.grid = self.transition_func(self.grid, ns, nc)
+            self.grid , town_burn = self.transition_func(self.grid, ns, nc,i)
         else:
-            self.grid = self.transition_func(self.grid, ns, nc,
-                                             *self.additional_args)
+            self.grid , town_burn = self.transition_func(self.grid, ns, nc,
+                                             *self.additional_args,i)
         # refresh wrapping border
         self.refresh_wrap()
+        
+        return town_burn
 
 
 def randomise2d(grid, background_state, proportions):
