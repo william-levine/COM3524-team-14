@@ -25,7 +25,6 @@ def setup(args):
     config.title = "Modelling Forest Fire"
     config.dimensions = 2
     config.states = (0,1,2,3,4,5,6)
-    # config.num_generations = 150
     
 
     # 0 = chapparal
@@ -35,16 +34,16 @@ def setup(args):
     # 4 = town
     # 5 = burning state
     # 6 = burnt state
+    # 7 = town
 
     config.state_colors = [
         (0.70, 0.59, 0.02),   # chaparral
-        (0, 1, 0),            # forest 
+        (0, 0.5, 0.05),       # forest 
         (0.67, 0.85, 0.90),   # lake
-        (0.0, 0.70, 0.54),    # canyon
-        (0.48, 0.24, 0),      # town 
+        (0.9, 0.85, 0.00),    # canyon
+        (0.0, 0.0, 0.0),      # town 
         (1, 0.3, 0),          # burning state
-        (0, 0, 0)             # burnt state
-
+        (0.3, 0.2, 0)         # burnt state
     ]
   
     ####################################################
@@ -59,11 +58,13 @@ def setup(args):
 
     return config
 
-def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, config):
+def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, config, numgen):
     """Function to apply the transition rules
     and return the new grid"""
     # YOUR CODE HERE
 
+
+    town_burn = False
     # STATES
     CHAPARRAL= 0 
     FOREST = 1
@@ -79,7 +80,8 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         CHAPARRAL: 30,    # 30 points deducted for each iteration (will last 14 iterations/ 7 days)
         FOREST: 7,        # 7 points deducted for each iteration (will last 60 iterations/ 30 days)
         LAKE: 0,
-        CANYON: 420       # 420 points deducted for each iteration (will last 1 iteration/ 1/2 day) 
+        CANYON: 420,       # 420 points deducted for each iteration (will last 1 iteration/ 1/2 day) 
+        TOWN: 1
     }
 
     #Ignite probability
@@ -87,7 +89,8 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         CHAPARRAL : 0.6,
         FOREST : 0.1,
         LAKE : 0.0,
-        CANYON : 0.9
+        CANYON : 0.9,
+        TOWN : 1.0
     }
 
     MAX_PROB = 0.9 # not 1 as it will then become deterministic and won't be as realistic
@@ -113,10 +116,13 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
     initial_grid = config.initial_grid
 
     # burning logic 
-    for terrain in (CHAPARRAL, FOREST, LAKE,  CANYON):
+    for terrain in (CHAPARRAL, FOREST, LAKE,  CANYON, TOWN):
         prob = IGNITE_PROB[terrain]
+
         if prob == 0:
             continue #skip lake
+        
+        
 
         # find cells that will burn
         adjacency = (grid == terrain) & (burning > 0)
@@ -152,6 +158,16 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         rand = np.random.random()
         ignite = adjacency & (rand < final_prob)
 
+        fire_reached_town = (grid == 4) & (neighbourcounts[5] > 0)
+
+        if fire_reached_town.any() == True:
+            town_burn = True
+
+        fire_reached_town = (grid == 4) & (neighbourcounts[5] > 0)
+
+        if fire_reached_town.any() == True:
+            town_burn = True
+
 
         """as of now, fire dont spread if it is surrounded by burnt area"""
         # duration of burning 
@@ -166,9 +182,11 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         
         grid[decayed_to_zero] = 6
         grid[ignite] = 5
+
+        print(numgen)
         
     
-    return grid
+    return grid , town_burn
 
 
 def main():
@@ -188,6 +206,7 @@ def main():
 
     # Create grid object using parameters from config + transition function
     grid = Grid2D(config, (transition_function, decay_grid, config))
+
 
     # Run the CA, save grid state every generation to timeline
     timeline = grid.run()
