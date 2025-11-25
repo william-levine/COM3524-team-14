@@ -25,6 +25,7 @@ def setup(args):
     config.title = "Modelling Forest Fire"
     config.dimensions = 2
     config.states = (0,1,2,3,4,5,6)
+    config.num_generations = 150
     
 
     # 0 = chapparal
@@ -34,16 +35,16 @@ def setup(args):
     # 4 = town
     # 5 = burning state
     # 6 = burnt state
+    # 7 = town
 
     config.state_colors = [
         (0.70, 0.59, 0.02),   # chaparral
-        (0, 1, 0),            # forest 
+        (0, 0.5, 0.05),       # forest 
         (0.67, 0.85, 0.90),   # lake
-        (0.0, 0.70, 0.54),    # canyon
-        (0.48, 0.24, 0),      # town 
+        (0.9, 0.85, 0.00),    # canyon
+        (0.0, 0.0, 0.0),      # town 
         (1, 0.3, 0),          # burning state
-        (0, 0, 0)             # burnt state
-
+        (0.3, 0.2, 0)         # burnt state
     ]
   
     ####################################################
