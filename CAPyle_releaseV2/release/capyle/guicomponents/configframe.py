@@ -79,7 +79,7 @@ class _ConfigFrame(tk.Frame):
         ca_config.state_colors = self.state_colors.get_value()
 
         ca_config.start_fire = self.start_fire.get_value()
-        print("Fire direction from dropdown:", ca_config.start_fire)
+        # print("Fire direction from dropdown:", ca_config.start_fire)
 
         if ca_config.initial_grid is not None:
             ca_config.initial_grid[ca_config.initial_grid==5]=0
