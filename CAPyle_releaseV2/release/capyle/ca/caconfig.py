@@ -21,6 +21,7 @@ class CAConfig(object):
         # default wrapping behaviour is True
         self.wrap = False
         self.default_paths()
+        self.start_fire = "LEFT"  #by default
 
     def fill_in_defaults(self):
         """ if any of the fields are not filled in in description
@@ -47,8 +48,8 @@ class CAConfig(object):
             self.rule_num = 0 if self.rule_num is None else self.rule_num  
 
 
-            # use this to tpggle the value between left and right position 
-            POWER_STATION = "LEFT" # "RIGHT"
+            # use this to toggle the value between left and right position 
+            POWER_STATION = self.start_fire
 
             # matrices for each element
             self.size = 10  # to resize every element at once
