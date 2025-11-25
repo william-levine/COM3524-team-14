@@ -19,14 +19,15 @@ class CAConfig(object):
         self.nhood_arr = None
         self.initial_grid = None
         # default wrapping behaviour is True
-        self.wrap = True
+        self.wrap = False
         self.default_paths()
+        self.start_fire = "RIGHT"  #by default
 
     def fill_in_defaults(self):
         """ if any of the fields are not filled in in description
         they are filled in with defaults here """
         # rule number
-        self.rule_num = 0 if self.rule_num is None else self.rule_num
+
         # number of generations
         if self.num_generations is None:
             self.num_generations = 100
@@ -37,12 +38,42 @@ class CAConfig(object):
                 self.grid_dims = (200, 200)
             else:
                 self.grid_dims = gens_to_dims(self.num_generations)
+            
 
-        # initial grid
+        # initial grid with each element 
         if self.initial_grid is None:
+            
+            # provided in the template
             fillstate = self.states[0] if self.states is not None else 0
-            self.initial_grid = np.zeros(self.grid_dims, dtype=type(fillstate))
+            self.rule_num = 0 if self.rule_num is None else self.rule_num  
+
+
+            # use this to toggle the value between left and right position 
+            POWER_STATION = self.start_fire
+
+            # matrices for each element
+            self.size = 10  # to resize every element at once
+            self.forest = np.ones((9*self.size,2*self.size), dtype=type(fillstate))
+            self.lake = np.full((2*self.size,5*self.size),2, dtype=type(fillstate))
+            self.canyon = np.full((4*self.size,4*self.size),3, dtype=type(fillstate))
+
+
+            # provided in the template
+            self.initial_grid = np.zeros(self.grid_dims, dtype=type(fillstate))  
             self.initial_grid.fill(fillstate)
+
+            # positioning the element in a blank grid
+            self.initial_grid[3:3+self.forest.shape[0], 3:3+self.forest.shape[1]]+= self.forest
+            self.initial_grid[67:67+self.lake.shape[0], 67:67+self.lake.shape[1]]+= self.lake
+            self.initial_grid[89:89+self.canyon.shape[0], 120:120+self.canyon.shape[1]]+= self.canyon
+
+            # positioning the town 
+            self.initial_grid[-1,0] = 4
+            # for different position of power station
+            if POWER_STATION == "LEFT":
+                self.initial_grid[0,0] = 5
+            elif POWER_STATION == "RIGHT":
+                self.initial_grid[0,-1] = 5
 
         # neighbourhood array
         if self.nhood_arr is None:
