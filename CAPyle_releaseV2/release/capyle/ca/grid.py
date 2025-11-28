@@ -112,6 +112,7 @@ class _ProgressWindow(object):
         # lift to top layer
         self.root.lift()
         self.root.attributes('-topmost', True)
+
         self.root.after_idle(self.root.attributes, '-topmost', False)
         #disable close
         self.root.protocol('WM_DELETE_WINDOW', self.noclose)
