@@ -75,12 +75,12 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
     BURNT = 6
 
     #Burn Duration
-    # 1 iteration = 1/2 day
+    # 1 iteration = 1 hour 
     BURN_DURATION = {    
-        CHAPARRAL: 30,    # 30 points deducted for each iteration (will last 14 iterations/ 7 days)
-        FOREST: 7,        # 7 points deducted for each iteration (will last 60 iterations/ 30 days)
+        CHAPARRAL: 30,    # 30 points deducted for each iteration (will last 168 iterations/ 7 days)
+        FOREST: 7,        # 7 points deducted for each iteration (will last 720 iterations/ 30 days)
         LAKE: 0,
-        CANYON: 420,       # 420 points deducted for each iteration (will last 1 iteration/ 1/2 day) 
+        CANYON: 420,       # 420 points deducted for each iteration (will last 12 iteration/ 1/2 day) 
         TOWN: 1
     }
 
@@ -180,7 +180,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         decay_grid[post_burning] -= burning_duration
         decayed_to_zero = (decay_grid == 0)
 
-
+        config.gen_town = numgen
         
         grid[decayed_to_zero] = 6
         grid[ignite] = 5
@@ -204,7 +204,7 @@ def main():
     for each iteration, 7 points will be deducted from
     forest element, once it reaches 0 (basically after 60 iteration),
     it will go to burnt state, same for other element"""
-    decay_grid.fill(420)
+    decay_grid.fill(5040)
 
     # Create grid object using parameters from config + transition function
     grid = Grid2D(config, (transition_function, decay_grid, config))

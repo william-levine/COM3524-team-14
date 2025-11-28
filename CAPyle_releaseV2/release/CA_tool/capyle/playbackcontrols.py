@@ -66,6 +66,7 @@ class _PlaybackControls():
             If stepping forward or backward is impossible, then set the
             UI buttons to disabled.
         """
+        self.maxframe = 400
         if forward:
             # step frame forward
             if self.current_frame < self.maxframe:
