@@ -5,7 +5,8 @@ from capyle.guicomponents import (_GenerationsUI, _GridDimensionsUI,
                                   _Separator, _NeighbourhoodUI, _RuleNumberUI,
                                   _StateColorsUI, _InitialGridUI)
 from firetoggleui import _FireToggleUI
-from windtoggleui import _WindToggleUI
+from winddirectionui import _WindDirectionUI
+from windspeedui import _WindSpeedUI
 
 
 class _ConfigFrame(tk.Frame):
@@ -59,8 +60,12 @@ class _ConfigFrame(tk.Frame):
         self.start_fire.pack(fill=tk.BOTH)
 
         # Wind direction
-        self.wind_direction = _WindToggleUI(self, self.ca_config)
+        self.wind_direction = _WindDirectionUI(self, self.ca_config)
         self.wind_direction.pack(fill=tk.BOTH)
+
+        # Wind speed
+        self.wind_speed = _WindSpeedUI(self, self.ca_config)
+        self.wind_speed.pack(fill=tk.BOTH)
 
         # refresh the frame and graph
         self.update(self.ca_config, self.ca_graph)
@@ -85,6 +90,7 @@ class _ConfigFrame(tk.Frame):
 
         ca_config.start_fire = self.start_fire.get_value()
         ca_config.wind_direction = self.wind_direction.get_value()
+        ca_config.wind_speed = self.wind_speed.get_value()
         # print("Fire direction from dropdown:", ca_config.start_fire)
 
         if ca_config.initial_grid is not None:
