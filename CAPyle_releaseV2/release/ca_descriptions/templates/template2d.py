@@ -93,7 +93,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         TOWN : 1.0
     }
 
-    MAX_PROB = 0.9 # not 1 as it will then become deterministic and won't be as realistic
+    MAX_BURN_PROB = 0.9 # not 1 as it will then become deterministic and won't be as realistic
 
     """ adjacent neighbours have a more intersecting surface points 
     than corner neighbours, so the probability is higher for 
@@ -108,6 +108,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
 
     # 0:NW, 1:N, 2:NE, 3:W, 4:E, 5:SW, 6:S, 7:SE = neighbourstates
     wind_direction = config.wind_direction
+    wind_speed = config.wind_speed
 
     print(f"Direction: {wind_direction}")
 
@@ -140,7 +141,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
 
         # additive terms depending on what factors affect the cell
         burning_bias = burning * 0.05
-        wind_multiplier = 2
+        wind_bias = wind_speed/50
 
         # probability must account for:
         #   material 'flammability'
@@ -148,12 +149,12 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         #   wind
         adjusted_prob = np.where(
             wind_increased,
-            np.minimum((prob + burning_bias) * wind_multiplier, MAX_PROB),
-            np.minimum(prob + burning_bias, MAX_PROB))
+            np.minimum((prob + burning_bias) + wind_bias, MAX_BURN_PROB),
+            np.minimum(prob + burning_bias, MAX_BURN_PROB))
         
         final_prob = np.where(
             wind_decreased,
-            np.maximum((prob + burning_bias) / wind_multiplier, 0.1),
+            np.maximum((prob + burning_bias) - wind_bias, 0.1),
             adjusted_prob)
 
         # method to decide to burn

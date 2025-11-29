@@ -2,7 +2,7 @@ import tkinter as tk
 from capyle.guicomponents import _ConfigUIComponent
 import numpy as np
 
-class _WindToggleUI(tk.Frame, _ConfigUIComponent):
+class _WindDirectionUI(tk.Frame, _ConfigUIComponent):
 
     def __init__(self, parent, ca_config):
         tk.Frame.__init__(self, parent)
