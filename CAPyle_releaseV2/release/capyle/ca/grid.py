@@ -78,11 +78,16 @@ class Grid(object):
         timeline[0] = np.copy(self.grid)
         for i in range(num_generations):
             # calculate the next timestep and save it
-            self.step()
+            town_burn = self.step(i)
+
+            print(town_burn)
+
             timeline[i+1] = np.copy(self.grid)
             # update the progress bar every 10 generations
             if (i+1) % 10 == 9:
                 progressbar.set(i+1)
+            if town_burn == True:
+                break
 
 
 class _ProgressWindow(object):
@@ -107,6 +112,7 @@ class _ProgressWindow(object):
         # lift to top layer
         self.root.lift()
         self.root.attributes('-topmost', True)
+
         self.root.after_idle(self.root.attributes, '-topmost', False)
         #disable close
         self.root.protocol('WM_DELETE_WINDOW', self.noclose)
