@@ -24,7 +24,7 @@ def setup(args):
     # -- THE CA MUST BE RELOADED IN THE GUI IF ANY OF THE BELOW ARE CHANGED --
     config.title = "Modelling Forest Fire"
     config.dimensions = 2
-    config.states = (0,1,2,3,4,5,6)
+    config.states = (0,1,2,3,4,5,6,7,8)
     
 
     # 0 = chapparal
@@ -34,7 +34,9 @@ def setup(args):
     # 4 = town
     # 5 = burning state
     # 6 = burnt state
-    # 7 = town
+    # 7 = might burn
+    # 8 = extinguished
+
 
     config.state_colors = [
         (0.70, 0.59, 0.02),   # chaparral
@@ -43,7 +45,11 @@ def setup(args):
         (0.9, 0.85, 0.00),    # canyon
         (0.0, 0.0, 0.0),      # town 
         (1, 0.3, 0),          # burning state
-        (0.3, 0.2, 0)         # burnt state
+        (0.3, 0.2, 0),        # burnt state
+        (1.0, 0.984, 0),      # burnt state
+        (0.612, 0.612, 0.612) # extinguished state
+
+
     ]
   
     ####################################################
@@ -58,7 +64,9 @@ def setup(args):
 
     return config
 
-def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, config, numgen):
+# printed = False
+
+def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, config, mightburn_grid, numgen):
     """Function to apply the transition rules
     and return the new grid"""
     # YOUR CODE HERE
@@ -73,6 +81,8 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
     TOWN = 4
     BURNING = 5
     BURNT = 6
+    MIGHT_BURN = 7
+    EXTINGUISHED = 8
 
     #Burn Duration
     # 1 iteration = 1 hour 
@@ -105,31 +115,32 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
     #     NW,NE,SW,SE : 0.5
     # }
 
-
     # 0:NW, 1:N, 2:NE, 3:W, 4:E, 5:SW, 6:S, 7:SE = neighbourstates
     wind_direction = config.wind_direction
     wind_speed = config.wind_speed
 
-    print(f"Direction: {wind_direction}")
+    # print(f"Direction: {wind_direction}")
 
     # neighbourcounts stores the number of neighbour for each state
-    chaparral, forest, lake, canyon, town, burning, burnt = neighbourcounts
+    chaparral, forest, lake, canyon, town, burning, burnt, might_burn, extinguished = neighbourcounts
     notburning = (chaparral, forest, lake,canyon)
 
     initial_grid = config.initial_grid
+    will_burn = (grid == MIGHT_BURN ) & (burning>0)
+    mightburn_grid[will_burn] -= 1
+    burning_grid = (mightburn_grid == 0)
+    grid[burning_grid] = 5
+    mightburn_grid[burning_grid] = 1
 
     # burning logic 
     for terrain in (CHAPARRAL, FOREST, LAKE,  CANYON, TOWN):
         prob = IGNITE_PROB[terrain]
-
         if prob == 0:
             continue #skip lake
-        
-        
 
         # find cells that will burn
-        adjacency = (grid == terrain) & (burning > 0)
-
+        adjacency = (grid == terrain) & (burning > 0) 
+        
         # find cells affected by the wind
         upwind_neighbour_states = neighbourstates[np.abs(7 - wind_direction)]
         downwind_neighbour_states = neighbourstates[wind_direction] 
@@ -161,36 +172,106 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         rand = np.random.random()
         ignite = adjacency & (rand < final_prob)
 
-        fire_reached_town = (grid == 4) & (neighbourcounts[5] > 0)
-
-        if fire_reached_town.any() == True:
-            town_burn = True
-
-        fire_reached_town = (grid == 4) & (neighbourcounts[5] > 0)
-
-        if fire_reached_town.any() == True:
-            town_burn = True
-
-
-        """as of now, fire dont spread if it is surrounded by burnt area"""
         # duration of burning 
         burning_duration = BURN_DURATION[terrain]
-        ## to get the initial element of the cell after it burned (by looking at its neighbour state)
-        #  a better way need to be found to get the initial state of the cell
         post_burning = ( grid == BURNING ) & (initial_grid == terrain)
         decay_grid[post_burning] -= burning_duration
         decayed_to_zero = (decay_grid == 0)
 
         config.gen_town = numgen
         
-        grid[decayed_to_zero] = 6
-        grid[ignite] = 5
+        # starts the water drop after certain iteration
+        if (numgen > config.water_drop) & config.start_drop:
+            grid = water_intervention(grid, might_burn, burning)
 
-        print(numgen)
-        
+        # cells that will turn into burning state
+        # ignite = adjacency & (rand < final_prob)
+        will_not_burn = (grid == 7) & (burning < 1) & (initial_grid == terrain)
+
+        grid[will_not_burn] = terrain
+        grid[decayed_to_zero] = 6
     
+        if config.start_drop:
+            grid[ignite] = 7
+        else:
+            grid[ignite] = 5
+
+
+        fire_reached_town = (grid == 4) & (neighbourcounts[5] > 0)
+        no_fire_left = not (grid == 5).any()
+        if (fire_reached_town.any() == True) or no_fire_left :
+            town_burn = True
+
+        fire_reached_town = (grid == 4) & (neighbourcounts[5] > 0)
+
+        if (fire_reached_town.any() == True) or no_fire_left :
+            town_burn = True
+        
     return grid , town_burn
 
+def water_intervention(grid, might_burn, burning):
+  
+    extinguish_grid = grid.copy()
+    # fire to be extinguish
+    to_extinguish = (grid == 5) & (might_burn>0)
+    # if no fire to be extinguished
+    if not grid[to_extinguish].all():
+        return grid
+    
+    # grid coordinate
+    rows, cols = np.indices(grid.shape)
+    # town row and location
+    trow, tcol = 175, 55
+    # calculating the distance of town to each cell
+    dist_from_town = np.sqrt((rows-trow)**2 + (cols-tcol)**2)
+    # total distance travel for helicopter 
+    total_distance_travelled = 0
+
+    # max dist for one iteration/ one hour
+    max_dist = 257*4 # 1 km = 4 squares
+
+
+    # keep extinguishing fire while distance is not maxed out
+    while total_distance_travelled < max_dist:
+        to_extinguish = (grid == 5) & (burning>0)
+        num_of_cell = np.sum(grid[to_extinguish])
+        # more than 1 cell need to be extinguished
+        if num_of_cell > 1:
+            min_dist = dist_from_town[to_extinguish].min()
+        else:
+            min_dist = dist_from_town[to_extinguish]
+        # the coordinate of the nearest cell to extinguish
+        if min_dist.size >0:
+            coords = np.where(dist_from_town == min_dist)
+            total_distance_travelled += min_dist*2
+            extinguish_grid[coords] = 8
+            # only extinguish cells that are burning and 
+            # not every cell that is in a certain radius from town 
+            extinguishing = (extinguish_grid == 8) & (grid == 5)
+            grid[extinguishing] = 8
+        else :
+            return grid
+        print(total_distance_travelled)
+
+    # rand = np.random.random()
+    # if burning > 4 :
+    #     reignition_prob = 0.2 * burning 
+    # else:
+    #     reignition_prob = 0.1 * burning
+
+
+
+    return grid
+    
+        # chech the position of the burning cell
+    # create another grid with the distance to get to the cell from town 
+    
+
+
+
+
+
+    # also calculate how many swuares can be extinguished with one round (num of bucket needed)
 
 def main():
     """ Main function that sets up, runs and saves CA"""
@@ -199,6 +280,7 @@ def main():
     
     #initialise the decay grid 
     decay_grid = np.zeros(config.grid_dims)
+    mightburn_grid = np.zeros(config.grid_dims)
 
     """420 because it is the least common multiple for 60 and 14.
     the burning duration kinda work like merit point,
@@ -206,9 +288,10 @@ def main():
     forest element, once it reaches 0 (basically after 60 iteration),
     it will go to burnt state, same for other element"""
     decay_grid.fill(5040)
+    mightburn_grid.fill(1)
 
     # Create grid object using parameters from config + transition function
-    grid = Grid2D(config, (transition_function, decay_grid, config))
+    grid = Grid2D(config, (transition_function, decay_grid, config, mightburn_grid))
 
 
     # Run the CA, save grid state every generation to timeline
