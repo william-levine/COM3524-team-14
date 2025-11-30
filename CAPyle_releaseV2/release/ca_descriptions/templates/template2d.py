@@ -160,19 +160,11 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         # method to decide to burn
         rand = np.random.random()
         ignite = adjacency & (rand < final_prob)
+        # reignition after cells have been extinguished
+        extinguished = (initial_grid == terrain) & (grid == EXTINGUISHED) & (burning>0)
+        reignition = extinguished & (rand < (final_prob * 0.1))
 
-        fire_reached_town = (grid == 4) & (neighbourcounts[5] > 0)
-
-        if fire_reached_town.any() == True:
-            town_burn = True
-
-        fire_reached_town = (grid == 4) & (neighbourcounts[5] > 0)
-
-        if fire_reached_town.any() == True:
-            town_burn = True
-
-
-        """as of now, fire dont spread if it is surrounded by burnt area"""
+    
         # duration of burning 
         burning_duration = BURN_DURATION[terrain]
         ## to get the initial element of the cell after it burned (by looking at its neighbour state)
@@ -191,6 +183,64 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
     
     return grid , town_burn
 
+def water_intervention(grid, might_burn, burning, config):
+    
+    BURNING = 5
+    EXTINGUISHED = 8 
+    extinguish_grid = grid.copy()
+    # fire to be extinguish
+    to_extinguish = (grid == BURNING) & (might_burn>0)
+    # if no fire to be extinguished
+    if not grid[to_extinguish].all():
+        return grid
+    
+    # grid coordinate
+    rows, cols = np.indices(grid.shape)
+    # town row and location
+    trow, tcol = 175, 55
+    # calculating the distance of town to each cell
+    dist_from_town = np.sqrt((rows-trow)**2 + (cols-tcol)**2)
+    # total distance travel for helicopter 
+    total_distance_travelled = 0
+
+    # max dist for one iteration/ one hour
+    no_load_speed = 257 # km/h
+    with_load_speed = 180 # km/h
+    distance_to_fire = 50 # km
+    # time for helicopter to make a round trip
+    round_trip_time =((1/257 + 1/80 )*distance_to_fire) 
+    # number of trip that can be made in one hour
+    roundtrip_per_iter = 1/round_trip_time
+    # maximum distance helicopter can cover in one hour
+    max_dist = distance_to_fire*2*roundtrip_per_iter*4  #1km = 4 cell
+
+
+    # keep extinguishing fire while distance is not maxed out
+    while total_distance_travelled < max_dist:
+        to_extinguish = (grid == BURNING) & (burning>0)
+        num_of_cell = np.sum(grid[to_extinguish])
+        # more than 1 cell need to be extinguished
+        if num_of_cell > 1:
+            min_dist = dist_from_town[to_extinguish].min()
+        else:
+            min_dist = dist_from_town[to_extinguish]
+        # the coordinate of the nearest cell to extinguish
+        if min_dist.size >0:
+            distance_to_fire = min_dist
+            coords = np.where(dist_from_town == min_dist)
+            # go and return to town distance ( to refill water )
+            total_distance_travelled += min_dist*2
+            extinguish_grid[coords] = EXTINGUISHED
+            # only extinguish cells that are burning and 
+            # not every cell that is in a certain radius from town 
+            extinguishing = (extinguish_grid == EXTINGUISHED) & (grid == BURNING)
+            grid[extinguishing] = EXTINGUISHED
+            config.water_drop_left -= 1
+        else :
+            return grid
+        print(total_distance_travelled)
+
+    return grid
 
 def main():
     """ Main function that sets up, runs and saves CA"""
