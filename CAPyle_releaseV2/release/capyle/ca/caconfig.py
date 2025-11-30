@@ -22,6 +22,7 @@ class CAConfig(object):
         self.wrap = False
         self.default_paths()
         self.start_fire = "RIGHT"  #by default
+        self.gen_town = None
 
     def fill_in_defaults(self):
         """ if any of the fields are not filled in in description
@@ -84,9 +85,9 @@ class CAConfig(object):
 
             # for different position of power station
             if POWER_STATION == "LEFT":
-                self.initial_grid[0,0] = 5
+                self.initial_grid[0,20] = 5
             elif POWER_STATION == "RIGHT":
-                self.initial_grid[0,-1] = 5
+                self.initial_grid[0,-10] = 5
 
         # neighbourhood array
         if self.nhood_arr is None:

@@ -39,6 +39,7 @@ class _PlaybackUI(tk.Frame):
 
         # Main playback slider (scrubbing slider)
         self.sliderframe = tk.Frame(self.controls.display.rbotframe)
+        tk.Label(self.sliderframe, text="hour(s)").pack(side=tk.RIGHT, anchor=tk.SE)
         self.scrubbing_slider = tk.Scale(
             self.sliderframe, from_=0, to=self.controls.maxframe,
             state=tk.DISABLED, orient=tk.HORIZONTAL, length=280)
