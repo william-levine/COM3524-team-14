@@ -236,7 +236,8 @@ def water_intervention(grid, might_burn, burning):
     total_distance_travelled = 0
 
     # max dist for one iteration/ one hour
-    max_dist = 257*4 # 1 km = 4 squares
+    helicopter_speed = 257 # km/h
+    max_dist = helicopter_speed*4 # 1 km = 4 squares
 
 
     # keep extinguishing fire while distance is not maxed out
