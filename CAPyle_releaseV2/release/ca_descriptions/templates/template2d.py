@@ -125,6 +125,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
     chaparral, forest, lake, canyon, town, burning, burnt, might_burn, extinguished = neighbourcounts
     notburning = (chaparral, forest, lake,canyon)
 
+    # cells that will burn in the next iteration will be shown as yellow
     initial_grid = config.initial_grid
     will_burn = (grid == MIGHT_BURN ) & (burning>0)
     mightburn_grid[will_burn] -= 1
@@ -174,11 +175,11 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         # method to decide to burn
         rand = np.random.random()
         ignite = adjacency & (rand < final_prob)
+        # reignition after cells have been extinguished
         extinguished = (initial_grid == terrain) & (grid == EXTINGUISHED) & (burning>0)
         reignition = extinguished & (rand < (final_prob * 0.3))
 
-        
-
+    
         # duration of burning 
         burning_duration = BURN_DURATION[terrain]
         post_burning = ( grid == BURNING ) & (initial_grid == terrain)
@@ -198,6 +199,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         grid[will_not_burn] = terrain
         grid[decayed_to_zero] = 6
     
+        # if water drop has not been enabled burn like before
         if config.start_drop:
             grid[ignite] = 7
             grid[reignition] =5
@@ -263,24 +265,7 @@ def water_intervention(grid, might_burn, burning):
             return grid
         print(total_distance_travelled)
 
-    #  prob = np.where(grid == EXTINGUISHED, IGNITE_PROB[terrain]*0.2, IGNITE_PROB[terrain])
-    # rand = np.random.random()
-    # if burning > 4 :
-    #     reignition_prob = 0.2 * burning 
-    # else:
-    #     reignition_prob = 0.1 * burning
-
     return grid
-    
-        # chech the position of the burning cell
-    # create another grid with the distance to get to the cell from town 
-    
-
-
-
-
-
-    # also calculate how many swuares can be extinguished with one round (num of bucket needed)
 
 def main():
     """ Main function that sets up, runs and saves CA"""
