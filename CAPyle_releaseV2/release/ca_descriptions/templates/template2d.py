@@ -178,7 +178,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         ignite = adjacency & (rand < final_prob)
         # reignition after cells have been extinguished
         extinguished = (initial_grid == terrain) & (grid == EXTINGUISHED) & (burning>0)
-        reignition = extinguished & (rand < (final_prob * 0.3))
+        reignition = extinguished & (rand < (final_prob * 0.1))
 
     
         # duration of burning 
@@ -241,8 +241,15 @@ def water_intervention(grid, might_burn, burning, config):
     total_distance_travelled = 0
 
     # max dist for one iteration/ one hour
-    helicopter_speed = 257 # km/h
-    max_dist = helicopter_speed*4 # 1 km = 4 squares
+    no_load_speed = 257 # km/h
+    with_load_speed = 180 # km/h
+    distance_to_fire = 50 # km
+    # time for helicopter to make a round trip
+    round_trip_time =((1/257 + 1/80 )*distance_to_fire) 
+    # number of trip that can be made in one hour
+    roundtrip_per_iter = 1/round_trip_time
+    # maximum distance helicopter can cover in one hour
+    max_dist = distance_to_fire*2*roundtrip_per_iter*4  #1km = 4 cell
 
 
     # keep extinguishing fire while distance is not maxed out
@@ -256,7 +263,7 @@ def water_intervention(grid, might_burn, burning, config):
             min_dist = dist_from_town[to_extinguish]
         # the coordinate of the nearest cell to extinguish
         if min_dist.size >0:
-            
+            distance_to_fire = min_dist
             coords = np.where(dist_from_town == min_dist)
             # go and return to town distance ( to refill water )
             total_distance_travelled += min_dist*2
