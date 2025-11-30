@@ -245,7 +245,7 @@ def water_intervention(grid, might_burn, burning, config):
     with_load_speed = 180 # km/h
     distance_to_fire = 50 # km
     # time for helicopter to make a round trip
-    round_trip_time =((1/257 + 1/80 )*distance_to_fire) 
+    round_trip_time =((1/no_load_speed + 1/with_load_speed )*distance_to_fire) 
     # number of trip that can be made in one hour
     roundtrip_per_iter = 1/round_trip_time
     # maximum distance helicopter can cover in one hour
