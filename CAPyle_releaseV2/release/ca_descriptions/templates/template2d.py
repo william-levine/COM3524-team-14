@@ -197,25 +197,25 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
 
         # cells that will turn into burning state
         # ignite = adjacency & (rand < final_prob)
-        will_not_burn = (grid == 7) & (burning < 1) & (initial_grid == terrain)
+        will_not_burn = (grid == MIGHT_BURN) & (burning < 1) & (initial_grid == terrain)
 
         grid[will_not_burn] = terrain
-        grid[decayed_to_zero] = 6
+        grid[decayed_to_zero] = BURNT
     
         # if water drop has not been enabled burn like before
         if config.start_drop:
-            grid[ignite] = 7
-            grid[reignition] =5
+            grid[ignite] = MIGHT_BURN
+            grid[reignition] = BURNING
         else:
-            grid[ignite] = 5
+            grid[ignite] = BURNING
 
 
-        fire_reached_town = (grid == 4) & (neighbourcounts[5] > 0)
+        fire_reached_town = (grid == TOWN) & (neighbourcounts[5] > 0)
         no_fire_left = not (grid == 5).any()
         if (fire_reached_town.any() == True) or no_fire_left :
             town_burn = True
 
-        fire_reached_town = (grid == 4) & (neighbourcounts[5] > 0)
+        fire_reached_town = (grid == TOWN) & (neighbourcounts[5] > 0)
 
         if (fire_reached_town.any() == True) or no_fire_left :
             town_burn = True
@@ -223,10 +223,12 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
     return grid , town_burn
 
 def water_intervention(grid, might_burn, burning, config):
-  
+    
+    BURNING = 5
+    EXTINGUISHED = 8 
     extinguish_grid = grid.copy()
     # fire to be extinguish
-    to_extinguish = (grid == 5) & (might_burn>0)
+    to_extinguish = (grid == BURNING) & (might_burn>0)
     # if no fire to be extinguished
     if not grid[to_extinguish].all():
         return grid
@@ -247,7 +249,7 @@ def water_intervention(grid, might_burn, burning, config):
 
     # keep extinguishing fire while distance is not maxed out
     while total_distance_travelled < max_dist:
-        to_extinguish = (grid == 5) & (burning>0)
+        to_extinguish = (grid == BURNING) & (burning>0)
         num_of_cell = np.sum(grid[to_extinguish])
         # more than 1 cell need to be extinguished
         if num_of_cell > 1:
@@ -260,11 +262,11 @@ def water_intervention(grid, might_burn, burning, config):
             coords = np.where(dist_from_town == min_dist)
             # go and return to town distance ( to refill water )
             total_distance_travelled += min_dist*2
-            extinguish_grid[coords] = 8
+            extinguish_grid[coords] = EXTINGUISHED
             # only extinguish cells that are burning and 
             # not every cell that is in a certain radius from town 
-            extinguishing = (extinguish_grid == 8) & (grid == 5)
-            grid[extinguishing] = 8
+            extinguishing = (extinguish_grid == EXTINGUISHED) & (grid == BURNING)
+            grid[extinguishing] = EXTINGUISHED
             config.water_drop_left -= 1
         else :
             return grid
