@@ -97,10 +97,10 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
 
     #Ignite probability
     IGNITE_PROB = {
-        CHAPARRAL : 0.1,
-        FOREST : 0.02,
+        CHAPARRAL : 0.18,
+        FOREST : 0.04,
         LAKE : 0.0,
-        CANYON : 0.3,
+        CANYON : 0.6,
         TOWN : 1.0
     }
 
@@ -176,7 +176,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         # method to decide to burn
         rand = np.random.random()
         
-        print(final_prob, "final probability", rand)
+
         ignite = adjacency & (rand < final_prob)
         # reignition after cells have been extinguished
         extinguished = (initial_grid == terrain) & (grid == EXTINGUISHED) & (burning>0)
@@ -270,7 +270,7 @@ def water_intervention(grid, might_burn, burning, config):
             config.water_drop_left -= 1
         else :
             return grid
-        print(total_distance_travelled)
+
 
     return grid
 
