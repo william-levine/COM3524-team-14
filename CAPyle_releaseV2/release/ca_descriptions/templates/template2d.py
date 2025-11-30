@@ -61,6 +61,7 @@ def setup(args):
         sys.exit()
     
     initial_grid = config.initial_grid
+    config.water_drop_left = 200
 
     return config
 
@@ -189,8 +190,8 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         config.gen_town = numgen
         
         # starts the water drop after certain iteration
-        if (numgen > config.water_drop) & config.start_drop:
-            grid = water_intervention(grid, might_burn, burning)
+        if (numgen > config.water_drop) & config.start_drop & (config.water_drop_left > 0): 
+            grid = water_intervention(grid, might_burn, burning,config)
 
         # cells that will turn into burning state
         # ignite = adjacency & (rand < final_prob)
@@ -219,7 +220,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         
     return grid , town_burn
 
-def water_intervention(grid, might_burn, burning):
+def water_intervention(grid, might_burn, burning, config):
   
     extinguish_grid = grid.copy()
     # fire to be extinguish
@@ -253,6 +254,7 @@ def water_intervention(grid, might_burn, burning):
             min_dist = dist_from_town[to_extinguish]
         # the coordinate of the nearest cell to extinguish
         if min_dist.size >0:
+            
             coords = np.where(dist_from_town == min_dist)
             # go and return to town distance ( to refill water )
             total_distance_travelled += min_dist*2
@@ -261,6 +263,7 @@ def water_intervention(grid, might_burn, burning):
             # not every cell that is in a certain radius from town 
             extinguishing = (extinguish_grid == 8) & (grid == 5)
             grid[extinguishing] = 8
+            config.water_drop_left -= 1
         else :
             return grid
         print(total_distance_travelled)

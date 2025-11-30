@@ -13,3 +13,4 @@ build/
 
 CAPyle_releaseV2/release/capyle/__pycache__/*
 CAPyle_releaseV2/release/temp/*
+CAPyle_releaseV2/release/temp/timeline.pkl
