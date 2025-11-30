@@ -97,10 +97,10 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
 
     #Ignite probability
     IGNITE_PROB = {
-        CHAPARRAL : 0.6,
-        FOREST : 0.1,
+        CHAPARRAL : 0.1,
+        FOREST : 0.02,
         LAKE : 0.0,
-        CANYON : 0.9,
+        CANYON : 0.3,
         TOWN : 1.0
     }
 
@@ -157,7 +157,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
 
         # additive terms depending on what factors affect the cell
         burning_bias = burning * 0.05
-        wind_bias = wind_speed/50
+        wind_bias = wind_speed/5
 
         # probability must account for:
         #   material 'flammability'
@@ -172,9 +172,11 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
             wind_decreased,
             np.maximum((prob + burning_bias) - wind_bias, 0.1),
             adjusted_prob)
-
+        
         # method to decide to burn
         rand = np.random.random()
+        
+        print(final_prob, "final probability", rand)
         ignite = adjacency & (rand < final_prob)
         # reignition after cells have been extinguished
         extinguished = (initial_grid == terrain) & (grid == EXTINGUISHED) & (burning>0)
