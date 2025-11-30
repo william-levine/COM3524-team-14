@@ -135,8 +135,11 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
     # burning logic 
     for terrain in (CHAPARRAL, FOREST, LAKE,  CANYON, TOWN):
         prob = IGNITE_PROB[terrain]
+       
         if prob == 0:
             continue #skip lake
+        
+        # prob = np.where(grid == EXTINGUISHED, IGNITE_PROB[terrain]*0.2, IGNITE_PROB[terrain])
 
         # find cells that will burn
         adjacency = (grid == terrain) & (burning > 0) 
@@ -171,6 +174,10 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         # method to decide to burn
         rand = np.random.random()
         ignite = adjacency & (rand < final_prob)
+        extinguished = (initial_grid == terrain) & (grid == EXTINGUISHED) & (burning>0)
+        reignition = extinguished & (rand < (final_prob * 0.3))
+
+        
 
         # duration of burning 
         burning_duration = BURN_DURATION[terrain]
@@ -193,6 +200,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
     
         if config.start_drop:
             grid[ignite] = 7
+            grid[reignition] =5
         else:
             grid[ignite] = 5
 
@@ -243,6 +251,7 @@ def water_intervention(grid, might_burn, burning):
         # the coordinate of the nearest cell to extinguish
         if min_dist.size >0:
             coords = np.where(dist_from_town == min_dist)
+            # go and return to town distance ( to refill water )
             total_distance_travelled += min_dist*2
             extinguish_grid[coords] = 8
             # only extinguish cells that are burning and 
@@ -253,13 +262,12 @@ def water_intervention(grid, might_burn, burning):
             return grid
         print(total_distance_travelled)
 
+    #  prob = np.where(grid == EXTINGUISHED, IGNITE_PROB[terrain]*0.2, IGNITE_PROB[terrain])
     # rand = np.random.random()
     # if burning > 4 :
     #     reignition_prob = 0.2 * burning 
     # else:
     #     reignition_prob = 0.1 * burning
-
-
 
     return grid
     
