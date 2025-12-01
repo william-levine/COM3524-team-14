@@ -92,7 +92,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid
         FOREST: 7,        # 7 points deducted for each iteration (will last 720 iterations/ 30 days)
         LAKE: 0,
         CANYON: 420,       # 420 points deducted for each iteration (will last 12 iteration/ 1/2 day) 
-        TOWN: 1
+        TOWN: 5040
     }
 
     #Ignite probability
