@@ -54,8 +54,7 @@ https://github.com/ac1asana/COM3524
 
 - IMPORTANT : make sure to rerun the program when you change the values!
 
- ## Explanation about the simulation
- - The water drop can start at a later iteration where fire might not be contained and will reach town 
+ ## Explanation about the water drop 
  - The water drop is limited to 12.5 km^2 of area. Therefore, if the water dropped after a certain later hours, the fire will not be contained and the extinguished area would be reignited again. 
 
 ## Author 
