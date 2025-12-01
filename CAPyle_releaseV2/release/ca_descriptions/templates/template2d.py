@@ -274,17 +274,11 @@ def main():
     burnt_decay_grid = np.zeros(config.grid_dims)
     mightburn_grid = np.zeros(config.grid_dims)
 
-    """420 because it is the least common multiple for 60 and 14.
-    the burning duration kinda work like merit point,
-    for each iteration, 7 points will be deducted from
-    forest element, once it reaches 0 (basically after 60 iteration),
-    it will go to burnt state, same for other element"""
     burnt_decay_grid.fill(5040)
     mightburn_grid.fill(1)
 
     # Create grid object using parameters from config + transition function
     grid = Grid2D(config, (transition_function, burnt_decay_grid, config, mightburn_grid))
-
 
     # Run the CA, save grid state every generation to timeline
     timeline = grid.run()
