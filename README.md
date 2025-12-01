@@ -15,11 +15,13 @@ https://github.com/ac1asana/COM3524
 ## Running the program 
 after you have run run_tool.py, choose option 1. Then a GUI pop up called capyle will appear on your screen (if not, look at the task bar ). Then choose the tab "File" on the upper left corner of the GUI. After that, click the option "Open" where a new pop up will appear. Then, to choose the file to open, click the templates folder, and click on template2d.py and click open.
 
-## Running the simulation 
+## Default value of the parameter in the simulation 
 
-When the simulation first appear, the default value would be 500 for generations, this means the iteration will be looped for 500 times. This is the optimal number to see how the fire progress and if it reaches town or not without the simulation seemingly stoppped midway. The default value for wind direction will be random but its wind speed will be 0.0 as a de
+When the simulation first appear, the default value would be 500 for generations, this means the iteration will be looped for 500 times. This is the optimal number to see how the fire progress and if it reaches town or not without the simulation seemingly stoppped midway. The default value for wind direction will be random but its wind speed will be 0.0 as the default value. Water drop would also be enabled by default and you can choose to disable it and see how the fire would spread to town with no short term prevention.
+All the colour of the state are shown in the left side of the GUI and can be changed according to your preferences. 
 
-
+ ## Explanation about the simulation
+ The water drop is limited to 12.5 km^2 of area. Therefore, if the water dropped after a certain later hours, the fire will not be contained and the extinguished area would be reignited again. Please refer to the colour section to see what's happening in the simulation!.
 
 ## Author 
 Ayesha Sana, Sharifah Anisah, Nurul Amilah, William Levine, Szymon emczyk Department of Computer Science  
