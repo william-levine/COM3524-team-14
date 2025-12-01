@@ -291,7 +291,7 @@ def main():
     config.save()
     # Save timeline to file
     utils.save(timeline, config.timeline_path)
-    # print("transition function",transition_function)
+
 
 if __name__ == "__main__":
     main()
