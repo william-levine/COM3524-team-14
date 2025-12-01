@@ -104,7 +104,6 @@ def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid
     than corner neighbours, so the probability is higher for 
     the adjacent neighbours """
 
-
     # 0:NW, 1:N, 2:NE, 3:W, 4:E, 5:SW, 6:S, 7:SE = neighbourstates
     wind_direction = config.wind_direction
     wind_weight = config.wind_weight
@@ -121,6 +120,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid
     grid[burning_grid] = 5
     mightburn_grid[burning_grid] = 1
 
+    """ Loop to update state for each terrain """
     # burning logic 
     for terrain in (CHAPARRAL, FOREST, LAKE,  CANYON, TOWN):
         prob = IGNITE_PROB[terrain]
@@ -206,7 +206,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid
     return grid , town_burn
 
 def water_intervention(grid, might_burn, burning, config):
-    
+    """Function for water drop"""
     BURNING = 5
     EXTINGUISHED = 8 
     extinguish_grid = grid.copy()
@@ -237,7 +237,9 @@ def water_intervention(grid, might_burn, burning, config):
     max_dist = distance_to_fire*2*roundtrip_per_iter*4  #1km = 4 cell
 
 
-    # keep extinguishing fire while distance is not maxed out
+    """Keep extinguishing fires as long as water is available 
+        and the travel distance limit hasn't been reached"""
+    
     while total_distance_travelled < max_dist:
         to_extinguish = (grid == BURNING) & (burning>0)
         num_of_cell = np.sum(grid[to_extinguish])
