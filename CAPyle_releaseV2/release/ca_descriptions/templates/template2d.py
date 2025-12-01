@@ -65,13 +65,9 @@ def setup(args):
 
     return config
 
-# printed = False
-
 def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid, config, mightburn_grid, numgen):
     """Function to apply the transition rules
     and return the new grid"""
-    # YOUR CODE HERE
-
 
     town_burn = False
     # STATES
@@ -119,8 +115,6 @@ def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid
     # 0:NW, 1:N, 2:NE, 3:W, 4:E, 5:SW, 6:S, 7:SE = neighbourstates
     wind_direction = config.wind_direction
     wind_weight = config.wind_weight
-
-    # print(f"Direction: {wind_direction}")
 
     # neighbourcounts stores the number of neighbour for each state
     chaparral, forest, lake, canyon, town, burning, burnt, might_burn, extinguished = neighbourcounts

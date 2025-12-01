@@ -105,7 +105,6 @@ class _ConfigFrame(tk.Frame):
         ca_config.enable_water = self.enable_water.get_value()
         ca_config.water_drop = self.water_drop.get_value()
         
-        # print("Fire direction from dropdown:", ca_config.start_fire)
 
         if ca_config.initial_grid is not None:
             ca_config.initial_grid[ca_config.initial_grid==5]=0
