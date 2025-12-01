@@ -4,7 +4,7 @@ from capyle.utils import is_valid_integer
 
 
 class _WaterDropUI(tk.Frame, _ConfigUIComponent):
-    DEFAULT = 17
+    DEFAULT = 12
 
     def __init__(self, parent,ca_config):
         """Starts the water drop stratergy after a number of hours/ iteration"""

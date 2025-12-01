@@ -35,7 +35,7 @@ class CAConfig(object):
 
         # number of generations
         if self.num_generations is None:
-            self.num_generations = 100
+            self.num_generations = 500
 
         # grid dimensions
         if self.grid_dims is None:
