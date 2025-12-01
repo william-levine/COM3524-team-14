@@ -62,8 +62,6 @@ class Grid(object):
         num_generations = verify_gens(self.ca_config.num_generations)
         timeline = np.empty(num_generations + 1, dtype=np.ndarray)
         # Progress window
-        # pass in the run function and timeline to the progress bar
-        # progress bar executes these
         gui = _ProgressWindow(num_generations, self._runca, timeline)
         return timeline
 

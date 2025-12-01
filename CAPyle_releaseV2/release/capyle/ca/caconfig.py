@@ -18,7 +18,6 @@ class CAConfig(object):
         self.num_generations = None
         self.nhood_arr = None
         self.initial_grid = None
-        # default wrapping behaviour is True
         self.wrap = False
         self.default_paths()
         self.start_fire = "RIGHT"  #by default
@@ -51,9 +50,7 @@ class CAConfig(object):
             # provided in the template
             fillstate = self.states[0] if self.states is not None else 0
             self.rule_num = 0 if self.rule_num is None else self.rule_num  
-
-
-            # use this to toggle the value between left and right position 
+ 
             POWER_STATION = self.start_fire
 
             # matrices for each element

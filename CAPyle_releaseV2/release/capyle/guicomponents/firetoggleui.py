@@ -6,7 +6,6 @@ class _FireToggleUI(tk.Frame, _ConfigUIComponent):
     def __init__(self, parent, ca_config):
         tk.Frame.__init__(self, parent)
         _ConfigUIComponent.__init__(self)
-        # super().__init__(parent)
 
         self.ca_config = ca_config
 

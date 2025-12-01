@@ -13,7 +13,7 @@ https://github.com/ac1asana/COM3524
 
 
 ## Running the program 
-after you have run run_tool.py, choose option 1. Then a GUI pop up called capyle will appear on your screen (if not, look at the task bar ). Then choose the tab "File" on the upper left corner of the GUI. After that, click the option "Open" where a new pop up will appear. Then, to choose the file to open, click the templates folder, and click on template2d.py and click open.
+After you have run run_tool.py, choose option 1. Then a GUI pop up called capyle will appear on your screen (if not, look at the task bar ). Then choose the tab "File" on the upper left corner of the GUI. After that, click the option "Open" where a new pop up will appear. Then, to choose the file to open, click the templates folder, and click on template2d.py and click open.
 
 ## Default value of the parameter in the simulation 
 
