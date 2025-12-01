@@ -33,10 +33,8 @@ https://github.com/ac1asana/COM3524
 |--------|------------|
 |<img src="play1.png" alt="fire spread with no water dropped " width="300"/> | <img src="water_drop_eg.png" alt="fire prevention with water dropped" width="300"/>|
 
-
-
-
-
+<br>
+<br>
 ## Default value of the parameter in the simulation 
 
 <img src="init_configuration.png" alt="How the simulation would look when you first open it " width="600"/>
