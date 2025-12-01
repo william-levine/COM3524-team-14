@@ -31,17 +31,13 @@ class _ConfigFrame(tk.Frame):
             self.rulenum_entry = _RuleNumberUI(self)
             self.rulenum_entry.pack(fill=tk.BOTH)
 
-        # self.separator()
 
-        # Gererations
+        # Generations
         self.generations_entry = _GenerationsUI(self)
         self.generations_entry.pack(fill=tk.BOTH)
 
-        # self.separator()
-
         # Neighbourhood selector gui
         self.nhood_select = _NeighbourhoodUI(self, self.ca_config.dimensions)
-        # self.nhood_select.pack(fill=tk.BOTH)
 
         self.separator()
 

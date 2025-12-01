@@ -53,9 +53,6 @@ def setup(args):
     ]
   
     ####################################################
-    # the GUI calls this to pass the user defined config
-    # into the main system with an extra argument
-    # do not change
     if len(args) == 2:
         config.save()
         sys.exit()
@@ -70,6 +67,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid
     and return the new grid"""
 
     town_burn = False
+
     # STATES
     CHAPARRAL= 0 
     FOREST = 1
@@ -100,17 +98,12 @@ def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid
         TOWN : 1.0
     }
 
-    MAX_BURN_PROB = 0.9 # not 1 as it will then become deterministic and won't be as realistic
+    MAX_BURN_PROB = 0.9 
 
     """ adjacent neighbours have a more intersecting surface points 
     than corner neighbours, so the probability is higher for 
     the adjacent neighbours """
 
-    # NW, N, NE, W, E, SW, S, SE = neighbourstates
-    # EXTRA_IGNITION = {
-    #     N,W,E,S : 1,
-    #     NW,NE,SW,SE : 0.5
-    # }
 
     # 0:NW, 1:N, 2:NE, 3:W, 4:E, 5:SW, 6:S, 7:SE = neighbourstates
     wind_direction = config.wind_direction
@@ -135,7 +128,6 @@ def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid
         if prob == 0:
             continue #skip lake
         
-        # prob = np.where(grid == EXTINGUISHED, IGNITE_PROB[terrain]*0.2, IGNITE_PROB[terrain])
 
         # find cells that will burn
         adjacency = (grid == terrain) & (burning > 0) 
@@ -188,7 +180,6 @@ def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid
             grid = water_intervention(grid, might_burn, burning,config)
 
         # cells that will turn into burning state
-        # ignite = adjacency & (rand < final_prob)
         will_not_burn = (grid == MIGHT_BURN) & (burning < 1) & (initial_grid == terrain)
 
         grid[will_not_burn] = terrain
