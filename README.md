@@ -31,7 +31,7 @@ https://github.com/ac1asana/COM3524
 
 |No Water| With Water |
 |--------|------------|
-|<img src="play1.png" alt="fire spread with no water dropped " width="200"/> | <img src="water_drop_eg.png" alt="fire prevention with water dropped" width="200"/>|
+|<img src="play1.png" alt="fire spread with no water dropped " width="300"/> | <img src="water_drop_eg.png" alt="fire prevention with water dropped" width="300"/>|
 
 
 
