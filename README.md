@@ -28,8 +28,10 @@ https://github.com/ac1asana/COM3524
 <img src="after_run_ca.png" alt="How the simulation would look when you run the simulation " width="600"/>
 
 - some of examples of how it would look when you click the play/pause button:
-<img src="play1.png" alt="fire spread with no water dropped " width="200"/>
-<img src="water_drop_eg.png" alt="fire prevention with water dropped" width="200"/>
+
+|No Water| With Water |
+|--------|------------|
+|<img src="play1.png" alt="fire spread with no water dropped " width="200"/> | <img src="water_drop_eg.png" alt="fire prevention with water dropped" width="200"/>|
 
 
 
