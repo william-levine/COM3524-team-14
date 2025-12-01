@@ -7,8 +7,6 @@ class _WindWeightUI(tk.Frame, _ConfigUIComponent):
     def __init__(self, parent, ca_config):
         tk.Frame.__init__(self, parent)
         _ConfigUIComponent.__init__(self)
-        # super().__init__(parent)
-
         self.ca_config = ca_config
 
         # upper frame to hold title and dropdown box
@@ -28,9 +26,7 @@ class _WindWeightUI(tk.Frame, _ConfigUIComponent):
         labelframe.pack()
 
     def get_value(self):
-        # return self.options_map[self.optvar.get()]
         choice = self.optvar.get()
-        print(choice)
         return float(choice)
 
     def set(self, value):
