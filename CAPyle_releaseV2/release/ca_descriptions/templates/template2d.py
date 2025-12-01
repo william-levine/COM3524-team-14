@@ -157,7 +157,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid
 
         # additive terms depending on what factors affect the cell
         burning_bias = burning * 0.05
-        wind_bias = wind_weight / 50
+        wind_bias = wind_weight / 5
 
         # probability must account for:
         #   material 'flammability'
