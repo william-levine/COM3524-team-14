@@ -24,6 +24,15 @@ https://github.com/ac1asana/COM3524
 - Wait for the progress bar ( it will not reach the end for certain scenario, dont worry about this, the program still works)
 - After the landscape have shown, click on the play button to see how the simulation goes
 
+- this is how it should look when you managed to run the program:
+<img src="after_run_ca.png" alt="How the simulation would look when you run the simulation " width="600"/>
+
+- some of examples of how it would look when you click the play/pause button:
+<img src="play1.png" alt="fire spread with no water dropped " width="600"/>
+<img src="water_drop_eg.png" alt="fire prevention with water dropped" width="600"/>
+
+
+
 ## Default value of the parameter in the simulation 
 
 <img src="init_configuration.png" alt="How the simulation would look when you first open it " width="600"/>
@@ -35,6 +44,8 @@ https://github.com/ac1asana/COM3524
 - Water drop would also be enabled by default and you can choose to disable it and see how the fire would spread to town with no short term prevention. And to show how the water successfully prevented the fire, the default value for when the water will start to drop is after 12 iterations
 
 - All the colour of the state are shown in the left side of the GUI and can be changed according to your preferences. 
+
+- IMPORTANT : make sure to rerun the program when you change the values!
 
  ## Explanation about the simulation
  - The water drop can start at a later iteration where fire might not be contained and will reach town 
