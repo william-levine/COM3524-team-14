@@ -20,6 +20,7 @@ https://github.com/ac1asana/COM3524
 - Then choose the tab "File" on the upper left corner of the GUI. 
 - After that, click the option "Open" where a new pop up will appear.
 - Then, to choose the file to open, click the templates folder, and click on template2d.py and click open.
+- Change the parameter value as you'd like and click on the "Apply configuration & run CA"
 
 ## Default value of the parameter in the simulation 
 
