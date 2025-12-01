@@ -8,7 +8,7 @@ from firetoggleui import _FireToggleUI
 from firepreventionui import _FirePreventionUI
 from waterdropui import _WaterDropUI
 from winddirectionui import _WindDirectionUI
-from windspeedui import _WindSpeedUI
+from windweightui import _WindWeightUI
 
 
 class _ConfigFrame(tk.Frame):
@@ -65,9 +65,9 @@ class _ConfigFrame(tk.Frame):
         self.wind_direction = _WindDirectionUI(self, self.ca_config)
         self.wind_direction.pack(fill=tk.BOTH)
 
-         # Wind speed
-        self.wind_speed = _WindSpeedUI(self, self.ca_config)
-        self.wind_speed.pack(fill=tk.BOTH)
+         # Wind weight
+        self.wind_weight = _WindWeightUI(self, self.ca_config)
+        self.wind_weight.pack(fill=tk.BOTH)
 
          # Enable water drop
         self.enable_water = _FirePreventionUI(self, self.ca_config)
@@ -101,7 +101,7 @@ class _ConfigFrame(tk.Frame):
 
         ca_config.start_fire = self.start_fire.get_value()
         ca_config.wind_direction = self.wind_direction.get_value()
-        ca_config.wind_speed = self.wind_speed.get_value()
+        ca_config.wind_weight = self.wind_weight.get_value()
         ca_config.enable_water = self.enable_water.get_value()
         ca_config.water_drop = self.water_drop.get_value()
         
