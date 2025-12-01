@@ -2,9 +2,11 @@
 
 This repository contains the source code and documentation for the system tools developed by team 14 for the COM3524 assignment. In this project, we adapted Conway's game of Life of cellular Automata to Model a Forest Fire spread. We used moore neighbourhood also multi-state to demonstrate the model of environment of different terrain (chaparral, forest, canyon, lake, town) and other states such as, will burn, burning, burnt and extinguished. The simulation will stop running when the fire reach the town or the are no fire left to be extinguished. The last iteration will either show no fire left or fire have reached one of the edges of the town. Number of hours can be obtain by looking at the most bottom slider. You can move the slider to see how the fire moves water dropped in every iterations.
 
-Also, they are few parameters that can be changes which are wind directions and wind speed to see how it affects the fire spread. We also implemented water drops to help in reducing the fire spread as short term interventions. The water drop can start at a later iteration where fire might not be contained and will reach town 
+Also, they are few parameters that can be changes which are wind directions and wind speed to see how it affects the fire spread. We also implemented water drops to help in reducing the fire spread as short term interventions. 
 
-use > 400 generations so the fire can reach town, fewer may make the simulation appear stuck
+## Notes
+- use > 400 generations so the fire can reach town, fewer may make the simulation appear stuck
+- Please refer to the colour section to see what's happening in the simulation!.
 
 ## Prerequisites
 Before starting, follow the steps in this github :
@@ -23,7 +25,8 @@ When the simulation first appear, the default value would be 500 for generations
 All the colour of the state are shown in the left side of the GUI and can be changed according to your preferences. 
 
  ## Explanation about the simulation
- The water drop is limited to 12.5 km^2 of area. Therefore, if the water dropped after a certain later hours, the fire will not be contained and the extinguished area would be reignited again. Please refer to the colour section to see what's happening in the simulation!.
+ - The water drop can start at a later iteration where fire might not be contained and will reach town 
+ - The water drop is limited to 12.5 km^2 of area. Therefore, if the water dropped after a certain later hours, the fire will not be contained and the extinguished area would be reignited again. 
 
 ## Author 
 Ayesha Sana, Sharifah Anisah, Nurul Amilah, William Levine, Szymon emczyk Department of Computer Science  
