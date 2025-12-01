@@ -275,7 +275,6 @@ def water_intervention(grid, might_burn, burning, config):
             config.water_drop_left -= 1
         else :
             return grid
-        print(total_distance_travelled)
 
     return grid
 

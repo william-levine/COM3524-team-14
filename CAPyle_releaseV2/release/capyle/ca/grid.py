@@ -79,9 +79,6 @@ class Grid(object):
         for i in range(num_generations):
             # calculate the next timestep and save it
             town_burn = self.step(i)
-
-            print(town_burn)
-
             timeline[i+1] = np.copy(self.grid)
             # update the progress bar every 10 generations
             if (i+1) % 10 == 9:

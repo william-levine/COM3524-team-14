@@ -13,9 +13,12 @@ https://github.com/ac1asana/COM3524
 
 
 ## Running the program 
-after you have run run_tool.py, choose option 1. Then a GUI pop up called capyle will appear on your screen (if not look at the task bar ). Then choose the tab "File" on the upper left corner of the GUI. After that, click the option "Open" where a new pop up will appear. Then, to choose the file to open, click the templates folder, and click on template2d.py and click open.
+after you have run run_tool.py, choose option 1. Then a GUI pop up called capyle will appear on your screen (if not, look at the task bar ). Then choose the tab "File" on the upper left corner of the GUI. After that, click the option "Open" where a new pop up will appear. Then, to choose the file to open, click the templates folder, and click on template2d.py and click open.
 
 ## Running the simulation 
+
+When the simulation first appear, the default value would be 500 for generations, this means the iteration will be looped for 500 times. This is the optimal number to see how the fire progress and if it reaches town or not without the simulation seemingly stoppped midway. The default value for wind direction will be random but its wind speed will be 0.0 as a de
+
 
 
 ## Author 
