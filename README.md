@@ -30,23 +30,6 @@ Download and install Docker Desktop:
 
 ---
 
----
-
-## Installation
-
-### 1. Clone the Repository
-
-Clone this repository and navigate to the COM3524-team-14 folder:
-
-```bash
-git clone https://github.com/william-levine/COM3524-team-14.git
-cd COM3524-team-14
-```
----
-
->[!NOTE]
->Before running the tools make sure that you have the latest update of this repository by typing **git pull**.
-
 ## Platform-Specific Notes
 ---
 
