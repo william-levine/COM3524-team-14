@@ -1,7 +1,8 @@
-# COM 3524 – System Tools
+# COM 3524 Team 14 – System Tools
 
-This repository contains the source code and documentation for the system tools developed for the COM3524 course. 
+This repository contains the source code and documentation for the system tools developed by team 14 for the COM3524 assignment. In this project, we adapted Conway's game of Life of cellular Automata to Model a Forest Fire spread. We used moore neighbourhood also multi-state to demonstrate the model of environment of different terrain (chaparral, forest, canyon, lake, town) and other states such as, will burn, burning, burnt and extinguished. The system will stop running when the fire reach town and able to obtain how many hours it takes by looking at the most bottom slider. You can move the slider to see how the fire moves in ever iterations.
 
+Also, they are few parameters that can be changes which are wind directions and wind speed to see how it affects the fire spread. We also implemented water drops to help in reducing the fire spread as short term interventions.
 ## Features
 
 - Cross-platform support (Linux, macOS, Windows)
@@ -34,11 +35,12 @@ Download and install Docker Desktop:
 ## Installation
 
 ### 1. Clone the Repository
-Clone this repository and navigate to the COM3524 folder:
+
+Clone this repository and navigate to the COM3524-team-14 folder:
 
 ```bash
-git clone https://github.com/ac1asana/COM3524.git
-cd COM3524
+git clone https://github.com/william-levine/COM3524-team-14.git
+cd COM3524-team-14
 ```
 ---
 
