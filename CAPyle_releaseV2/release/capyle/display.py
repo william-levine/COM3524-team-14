@@ -225,7 +225,7 @@ class Display(object):
             self.ca_graph.set_colormap(self.ca_config.state_colors)
 
         maxframe = len(self.ca_graph.timeline) - 1
-        self.update_controls(self.ca_config.gen_town)
+        self.update_controls(self.ca_config.gen_town + 1 )
 
         # enable screenshotting
         self.screenshotui.set(graph=self.ca_graph, title=self.ca_config.title)

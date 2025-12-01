@@ -23,6 +23,10 @@ class CAConfig(object):
         self.default_paths()
         self.start_fire = "RIGHT"  #by default
         self.gen_town = None
+        self.enable_water = None
+        self.start_drop = None
+        self.water_drop = None
+        self.water_drop_left = 200
 
     def fill_in_defaults(self):
         """ if any of the fields are not filled in in description
