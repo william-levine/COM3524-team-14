@@ -26,22 +26,22 @@ class _ConfigFrame(tk.Frame):
 
         if self.ca_config.dimensions == 2:
             self.griddims_entry = _GridDimensionsUI(self)
-            self.griddims_entry.pack(fill=tk.BOTH)
+            # self.griddims_entry.pack(fill=tk.BOTH)
         else:
             self.rulenum_entry = _RuleNumberUI(self)
             self.rulenum_entry.pack(fill=tk.BOTH)
 
-        self.separator()
+        # self.separator()
 
         # Gererations
         self.generations_entry = _GenerationsUI(self)
         self.generations_entry.pack(fill=tk.BOTH)
 
-        self.separator()
+        # self.separator()
 
         # Neighbourhood selector gui
         self.nhood_select = _NeighbourhoodUI(self, self.ca_config.dimensions)
-        self.nhood_select.pack(fill=tk.BOTH)
+        # self.nhood_select.pack(fill=tk.BOTH)
 
         self.separator()
 
