@@ -53,7 +53,7 @@ class _ConfigFrame(tk.Frame):
 
         # Colour selector
         self.state_colors = _StateColorsUI(self, self.ca_config, self.ca_graph)
-        self.state_colors.pack(fill=tk.BOTH)
+        # self.state_colors.pack(fill=tk.BOTH)
 
         self.separator()
         

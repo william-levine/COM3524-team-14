@@ -6,32 +6,17 @@ Also, they are few parameters that can be changes which are wind directions and 
 
 use > 400 generations so the fire can reach town, fewer may make the simulation appear stuck
 
-## Features
-
-- Cross-platform support (Linux, macOS, Windows)
-- Modular, extensible design for course assignments
-
----
 ## Prerequisites
-Before starting, ensure the following softwares and tools are installed on your machine:
+Before starting, follow the steps in this github :
 
-- [Python 3.8+](https://www.python.org/downloads/)
-- `pip` (Python package manager for installing necessary dependencies)
-- Git (to clone this repository)
+https://github.com/ac1asana/COM3524 
 
 
-###  Docker Desktop
-Download and install Docker Desktop:  
-[https://www.docker.com/products/docker-desktop/]
+## Running the program 
+after you have run run_tool.py, choose option 1. Then a GUI pop up called capyle will appear on your screen (if not look at the task bar ). Then choose the tab "File" on the upper left corner of the GUI. After that, click the option "Open" where a new pop up will appear. Then, to choose the file to open, click the templates folder, and click on template2d.py and click open.
 
-###  X11 Server
-| Platform | Tool     | Link                                      |
-|----------|----------|-------------------------------------------|
-| Windows  | VcXsrv   | [VcXsrv Download](https://sourceforge.net/projects/vcxsrv/) |
-| macOS    | XQuartz  | [XQuartz Download](https://www.xquartz.org/) |
-| Linux    | Built-in | Usually pre-installed with the system     |
+## Running the simulation 
 
----
 
 ## Author 
 Ayesha Sana, Sharifah Anisah, Nurul Amilah, William Levine, Szymon emczyk Department of Computer Science  
