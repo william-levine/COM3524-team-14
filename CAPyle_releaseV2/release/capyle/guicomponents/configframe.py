@@ -107,13 +107,6 @@ class _ConfigFrame(tk.Frame):
         
         # print("Fire direction from dropdown:", ca_config.start_fire)
 
-        if ca_config.initial_grid is not None:
-            ca_config.initial_grid[ca_config.initial_grid==5]=0
-            if ca_config.start_fire=="LEFT":
-                ca_config.initial_grid[0,20] = 5
-            else:
-                ca_config.initial_grid[0,-1] = 5
-
         if ca_config.water_drop is not None:
             if ca_config.enable_water == 'YES':
                 ca_config.start_drop = True 

@@ -91,7 +91,7 @@ class CAConfig(object):
             if POWER_STATION == "LEFT":
                 self.initial_grid[0,20] = 5
             elif POWER_STATION == "RIGHT":
-                self.initial_grid[0,-1] = 5
+                self.initial_grid[0,199] = 5
 
         # neighbourhood array
         if self.nhood_arr is None:
