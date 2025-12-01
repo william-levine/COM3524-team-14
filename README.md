@@ -17,6 +17,8 @@ after you have run run_tool.py, choose option 1. Then a GUI pop up called capyle
 
 ## Default value of the parameter in the simulation 
 
+<img src="init_configuration.png" alt="How the simulation would look when you first open it " width="600"/>
+
 When the simulation first appear, the default value would be 500 for generations, this means the iteration will be looped for 500 times. This is the optimal number to see how the fire progress and if it reaches town or not without the simulation seemingly stoppped midway. The default value for wind direction will be random but its wind speed will be 0.0 as the default value. Water drop would also be enabled by default and you can choose to disable it and see how the fire would spread to town with no short term prevention.
 All the colour of the state are shown in the left side of the GUI and can be changed according to your preferences. 
 
