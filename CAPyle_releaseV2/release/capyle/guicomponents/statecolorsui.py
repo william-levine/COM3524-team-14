@@ -37,8 +37,12 @@ class _StateColorsUI(tk.Frame, _ConfigUIComponent):
 
         outerframe = tk.Frame(self)
         for i, state in enumerate(self.states):
+            s=["chaparral","forest","lake","canyon","town","burning","burnt","might burn","extinguished"]
+
+            colour_state = s[i]
+
             frame = tk.Frame(outerframe)
-            label = tk.Label(frame, text=state)
+            label = tk.Label(frame, text=f"{colour_state} :")
             self.canvas[i] = tk.Canvas(
                 frame, height=self.CANVASSIZE, width=self.CANVASSIZE,
                 background=rgb_to_hex(*self.selected_colors[i]),
