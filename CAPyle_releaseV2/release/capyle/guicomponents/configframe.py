@@ -49,13 +49,13 @@ class _ConfigFrame(tk.Frame):
         self.init_grid = _InitialGridUI(self, self.ca_config)
         self.init_grid.pack(fill=tk.BOTH)
 
-        # self.separator()
+        self.separator()
 
         # Colour selector
         self.state_colors = _StateColorsUI(self, self.ca_config, self.ca_graph)
-        # self.state_colors.pack(fill=tk.BOTH)
+        self.state_colors.pack(fill=tk.BOTH)
 
-        # self.separator()
+        self.separator()
         
         #Fire direction
         self.start_fire = _FireToggleUI(self, self.ca_config)
