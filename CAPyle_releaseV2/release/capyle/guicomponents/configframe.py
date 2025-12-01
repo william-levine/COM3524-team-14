@@ -26,12 +26,12 @@ class _ConfigFrame(tk.Frame):
 
         if self.ca_config.dimensions == 2:
             self.griddims_entry = _GridDimensionsUI(self)
-            self.griddims_entry.pack(fill=tk.BOTH)
+            # self.griddims_entry.pack(fill=tk.BOTH)
         else:
             self.rulenum_entry = _RuleNumberUI(self)
             self.rulenum_entry.pack(fill=tk.BOTH)
 
-        self.separator()
+        # self.separator()
 
         # Gererations
         self.generations_entry = _GenerationsUI(self)
@@ -55,7 +55,7 @@ class _ConfigFrame(tk.Frame):
         self.state_colors = _StateColorsUI(self, self.ca_config, self.ca_graph)
         # self.state_colors.pack(fill=tk.BOTH)
 
-        self.separator()
+        # self.separator()
         
         #Fire direction
         self.start_fire = _FireToggleUI(self, self.ca_config)
