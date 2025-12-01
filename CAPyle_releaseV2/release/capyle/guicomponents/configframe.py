@@ -112,7 +112,13 @@ class _ConfigFrame(tk.Frame):
             if ca_config.start_fire=="LEFT":
                 ca_config.initial_grid[0,20] = 5
             else:
-                ca_config.initial_grid[0,-10] = 5
+                ca_config.initial_grid[0,-1] = 5
+
+        if ca_config.water_drop is not None:
+            if ca_config.enable_water == 'YES':
+                ca_config.start_drop = True 
+            else:
+                ca_config.start_drop = False
 
         if ca_config.water_drop is not None:
             if ca_config.enable_water == 'YES':
