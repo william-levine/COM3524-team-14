@@ -35,6 +35,8 @@ https://github.com/ac1asana/COM3524
 
 <br>
 <br>
+<br>
+
 ## Default value of the parameter in the simulation 
 
 <img src="init_configuration.png" alt="How the simulation would look when you first open it " width="600"/>
