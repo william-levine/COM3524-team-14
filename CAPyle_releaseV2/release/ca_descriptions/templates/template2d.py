@@ -67,7 +67,7 @@ def setup(args):
 
 # printed = False
 
-def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, config, mightburn_grid, numgen):
+def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid, config, mightburn_grid, numgen):
     """Function to apply the transition rules
     and return the new grid"""
     # YOUR CODE HERE
@@ -184,8 +184,8 @@ def transition_function(grid, neighbourstates, neighbourcounts, decay_grid, conf
         # duration of burning 
         burning_duration = BURN_DURATION[terrain]
         post_burning = ( grid == BURNING ) & (initial_grid == terrain)
-        decay_grid[post_burning] -= burning_duration
-        decayed_to_zero = (decay_grid == 0)
+        burnt_decay_grid[post_burning] -= burning_duration
+        decayed_to_zero = (burnt_decay_grid == 0)
 
         config.gen_town = numgen
         
@@ -285,7 +285,7 @@ def main():
     config = setup(sys.argv[1:])
     
     #initialise the decay grid 
-    decay_grid = np.zeros(config.grid_dims)
+    burnt_decay_grid = np.zeros(config.grid_dims)
     mightburn_grid = np.zeros(config.grid_dims)
 
     """420 because it is the least common multiple for 60 and 14.
@@ -293,11 +293,11 @@ def main():
     for each iteration, 7 points will be deducted from
     forest element, once it reaches 0 (basically after 60 iteration),
     it will go to burnt state, same for other element"""
-    decay_grid.fill(5040)
+    burnt_decay_grid.fill(5040)
     mightburn_grid.fill(1)
 
     # Create grid object using parameters from config + transition function
-    grid = Grid2D(config, (transition_function, decay_grid, config, mightburn_grid))
+    grid = Grid2D(config, (transition_function, burnt_decay_grid, config, mightburn_grid))
 
 
     # Run the CA, save grid state every generation to timeline
