@@ -118,7 +118,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid
 
     # 0:NW, 1:N, 2:NE, 3:W, 4:E, 5:SW, 6:S, 7:SE = neighbourstates
     wind_direction = config.wind_direction
-    wind_speed = config.wind_speed
+    wind_weight = config.wind_weight
 
     # print(f"Direction: {wind_direction}")
 
@@ -157,7 +157,7 @@ def transition_function(grid, neighbourstates, neighbourcounts, burnt_decay_grid
 
         # additive terms depending on what factors affect the cell
         burning_bias = burning * 0.05
-        wind_bias = wind_speed/50
+        wind_bias = wind_weight / 50
 
         # probability must account for:
         #   material 'flammability'

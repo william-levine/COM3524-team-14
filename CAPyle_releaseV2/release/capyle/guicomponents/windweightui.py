@@ -2,7 +2,7 @@ import tkinter as tk
 from capyle.guicomponents import _ConfigUIComponent
 import numpy as np
 
-class _WindSpeedUI(tk.Frame, _ConfigUIComponent):
+class _WindWeightUI(tk.Frame, _ConfigUIComponent):
 
     def __init__(self, parent, ca_config):
         tk.Frame.__init__(self, parent)
@@ -13,10 +13,10 @@ class _WindSpeedUI(tk.Frame, _ConfigUIComponent):
 
         # upper frame to hold title and dropdown box
         labelframe = tk.Frame(self)
-        gen_label = tk.Label(labelframe, text='Wind Speed:')
+        gen_label = tk.Label(labelframe, text='Wind Weight:')
         gen_label.pack(side=tk.LEFT)
         
-        self.wind_speed = tk.StringVar()
+        self.wind_weight = tk.StringVar()
 
         self.options = '0.0', '0.5', '1.0', '1.5', '2.0', '2.5', '3.0'
         self.optvar = tk.StringVar(self)
@@ -34,7 +34,7 @@ class _WindSpeedUI(tk.Frame, _ConfigUIComponent):
         return float(choice)
 
     def set(self, value):
-        self.wind_speed.set(value)
+        self.wind_weight.set(value)
 
     def set_default(self):
-        self.wind_speed.set("1")
+        self.wind_weight.set("1")
