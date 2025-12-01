@@ -20,7 +20,9 @@ https://github.com/ac1asana/COM3524
 - Then choose the tab "File" on the upper left corner of the GUI. 
 - After that, click the option "Open" where a new pop up will appear.
 - Then, to choose the file to open, click the templates folder, and click on template2d.py and click open.
-- Change the parameter value as you'd like and click on the "Apply configuration & run CA"
+- Change the parameter value as you'd like and click on the "Apply configuration & run CA" to run the simulation
+- Wait for the progress bar ( it will not reach the end for certain scenario, dont worry about this, the program still works)
+- After the landscape have shown, click on the play button to see how the simulation goes
 
 ## Default value of the parameter in the simulation 
 
